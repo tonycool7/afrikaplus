@@ -1,0 +1,146 @@
+@custom_color : #68a3b0;
+
+.afrika-audio{
+  position: fixed;
+  z-index: 10;
+  top: 95px;
+  width: 336px;
+  left: 105px;
+  height: 50px;
+  audio{
+    position: absolute;
+    visibility: hidden;
+  }
+}
+
+
+*{
+  //border: 1px solid green;
+}
+.audio-head{
+  width: 100%;
+  height: 100%;
+  .main-controls{
+    height: 50px;
+    background-color: rgba(0,0,0,.7);
+    border-radius: 25px;
+    padding: 0px;
+    list-style: none;
+    width: 100%;
+    li{
+      vertical-align: middle;
+      margin-right: 7px;
+      display: table-cell;
+      height: 50px;
+      width: 56px;
+      text-align: center;
+      color: @custom_color;
+      cursor: pointer;
+      .fa-step-backward, .fa-step-forward, .fa-repeat, .fa-random{
+        font-size: 18px;
+      }
+    }
+
+
+  }
+
+  .loading{
+    width: 302px;
+    position: absolute;
+    height: 4px;
+    bottom: 0px;
+    left: 18px;
+
+    .total-length{
+      width: 100%;
+      position: absolute;
+      z-index: 100;
+      height: 100%;
+      border-radius: 2px;
+      background-color: #bc7f31;
+    }
+
+    .loaded-length{
+      position: absolute;
+      width: 100%;
+      z-index: 200;
+      height: 100%;
+      border-radius: 2px;
+      background-color: #a8b343;
+    }
+
+    .current-length{
+      width: 100%;
+      position: absolute;
+      height: 100%;
+      border-radius: 2px;
+      z-index: 300;
+      background-color: @custom_color;
+    }
+  }
+
+}
+
+.album-content{
+  background-color: white;
+  height: auto;
+  padding: 10px 0px 10px 30px;
+  width: 100%;
+  li{
+    font-family: arial;
+    color: black;
+    font-size: 12px;
+    span{
+      display: none;
+      color: #ea7739;
+    }
+  }
+
+  li.active{
+    span{
+      display: inline;
+    }
+  }
+}
+
+.audio-body{
+  display: none;
+  padding: 0px;
+  position: relative;
+  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  height: auto;
+  overflow: hidden;
+  border-radius: 8px;
+
+  #album-img{
+    width: 100%;
+    height: auto;
+  }
+  .secondary-controls{
+    .audio-head .main-controls;
+    z-index: 400;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+  }
+  .album-title{
+    padding: 11px 0px 0px 20px;
+    color: black;
+    font-weight: 900;
+    z-index: 400;
+    margin: 0px;
+    line-height: 1;
+    font-size: 18px;
+    position: relative;
+  }
+  .player-time{
+    padding: 0px 0px 0px 20px;
+    z-index: 400;
+    font-size: 16px;
+    color: black;
+    position: relative;
+    display: block;
+    font-weight: 400;
+  }
+}

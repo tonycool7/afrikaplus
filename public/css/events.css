@@ -1,0 +1,112 @@
+.event-container {
+  background-image: url(/images/africa/events.jpg);
+  display: block;
+  height: 374pt;
+  position: relative;
+  margin-left: 10pt;
+  margin-right: 10pt;
+}
+.event-container .main-title {
+  font-family: "Arial Bold", "Arial";
+  font-weight: 900;
+  font-size: 48pt;
+  text-align: center;
+  color: white;
+}
+.event-container .afrikaplusevents-decr {
+  margin: 0pt 80pt 0pt 80pt;
+  text-align: center;
+  padding: 0pt 60pt 0pt 60pt;
+  background-color: rgba(233, 183, 56, 0.478);
+}
+.event-container .afrikaplusevents-decr p {
+  font-family: "Arial Bold", "Arial";
+  font-weight: 900;
+  font-size: 16pt;
+  color: white;
+}
+.event-item {
+  height: 400pt;
+}
+.events-item-container {
+  margin-top: 40pt;
+  margin-bottom: 70pt;
+  width: 100%;
+  min-height: 480pt;
+  max-width: 950px;
+  padding: 20pt;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: black;
+}
+.events-item-container ul {
+  padding: 0px;
+  list-style: none;
+}
+.events-item-container ul li {
+  color: white;
+  font-size: 14pt;
+}
+.event-body {
+  height: 240pt;
+  background-color: black;
+  padding: 10pt;
+  display: block;
+  margin-top: 10pt;
+  -webkit-box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.55);
+          box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.55);
+}
+.event-body:hover .event-image {
+  -webkit-transform: scale(1.06);
+          transform: scale(1.06);
+}
+.event-body .event-image {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  height: 145pt;
+}
+.event-body .event-title {
+  font-family: "Arial Bold", "Arial";
+  font-size: 11pt;
+  font-weight: bold;
+  text-decoration: underline;
+  color: white;
+  text-align: center;
+}
+.event-body .event-descr {
+  font-family: "Arial Bold", "Arial";
+  font-size: 11pt;
+  font-weight: bold;
+  text-align: center;
+  color: #afafaf;
+  padding: 3pt;
+}
+.events-wrapper {
+  position: relative;
+  top: 37pt;
+}
+.event-list {
+  margin-top: 5pt;
+}
+.events-col {
+  max-width: 1200px;
+  margin: auto;
+  width: 100%;
+}
+.moreevents {
+  cursor: pointer;
+  text-align: center;
+  background-color: black;
+}
+.moreevents p {
+  font-family: "Arial Bold", "Arial";
+  font-size: 14pt;
+  font-weight: bold;
+  text-decoration: underline;
+  color: white;
+}
+.more-events-block {
+  margin-bottom: 80pt;
+  margin-top: 30pt;
+}

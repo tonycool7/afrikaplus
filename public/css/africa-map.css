@@ -1,0 +1,63 @@
+.african-map {
+  border: 1px solid red;
+  width: 450px;
+  height: 500px;
+  margin-left: -100px;
+  top: -87vh;
+  left: 25%;
+  position: absolute;
+}
+.map-item {
+  position: absolute;
+}
+.map-item .country {
+  display: none;
+}
+.map-item img {
+  height: auto;
+  width: 60px;
+}
+.welcome-msg {
+  position: absolute;
+  height: 414.6px;
+  left: 65%;
+  width: 462px;
+  margin-left: -231px;
+  top: -89vh;
+}
+.somalia {
+  top: 157px;
+  left: 85%;
+}
+.ethopia {
+  top: 150.7px;
+  right: 23px;
+}
+.sudan {
+  top: 127px;
+  right: 79.5px;
+}
+.egypt {
+  right: 92px;
+  top: 77px;
+}
+.libya {
+  right: 150px;
+  top: 75px;
+}
+.chad {
+  right: 130px;
+  top: 109px;
+}
+.central-african-rep {
+  right: -25px;
+  top: 181px;
+}
+.dem-rep-of-congo {
+  top: 205px;
+  right: -22px;
+}
+.kenya {
+  right: 47px;
+  top: 189px;
+}

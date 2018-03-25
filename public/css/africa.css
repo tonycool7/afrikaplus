@@ -1,0 +1,432 @@
+.intro {
+  position: fixed;
+}
+.intro img {
+  width: 462px;
+  height: auto;
+  position: absolute;
+  left: 50%;
+  margin-left: -231px;
+  top: -89vh;
+}
+.triangle {
+  width: 200px;
+  z-index: 3;
+  height: 100vh;
+  position: absolute;
+  top: 0px;
+  right: -198px;
+}
+.new-trending {
+  background-color: white;
+}
+.new-trending h3 {
+  padding-left: 70px;
+  font-size: 53px;
+  margin: 0px 0px 28px 0px;
+}
+.new-trending .col-md-7 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100vh;
+}
+.new-trending p {
+  line-height: 1.5;
+  padding: 0px 0px 0px 70px;
+  font-size: 17px;
+}
+.trending-img {
+  height: 33.3vh;
+}
+.welcome-msg {
+  position: absolute;
+  height: 414.6px;
+  left: 41%;
+  width: 462px;
+  margin-left: -231px;
+  top: -89vh;
+}
+.welcome-msg p {
+  position: absolute;
+  font-family: 'Arial Bold', 'Arial';
+  line-height: 1.2;
+  color: #9d9fa1;
+  bottom: 0px;
+  font-weight: 800;
+  font-size: 26px;
+}
+.event-bg {
+  -webkit-box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.2);
+  height: 70vh;
+  margin-top: -26vh;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  background-image: url(/images/africa/events.jpg);
+}
+.event-bg .buy-merchandise-block {
+  border-color: white;
+  width: 198px;
+  margin: auto;
+}
+.event-bg h3 {
+  text-align: center;
+  padding: 10px 0px 0px;
+  color: white;
+  font-weight: 800;
+  font-size: 50px;
+}
+.event-bg .see-more-events {
+  display: block;
+  width: 100px;
+  color: white;
+  margin: auto;
+  background-color: #68a3b0;
+}
+.event-bg p {
+  text-align: center;
+  font-size: 18px;
+  color: white;
+}
+.more-events {
+  bottom: 20px;
+  left: 25%;
+  width: 50%;
+  position: absolute;
+}
+.more-events div {
+  border: 1px solid black;
+  height: 47vh;
+  position: relative;
+  float: left;
+  width: 31.3%;
+  margin-right: 2%;
+}
+.more-events div::before {
+  position: absolute;
+  content: '';
+  height: 100%;
+  width: 100%;
+}
+.more-events div .btn-event {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: #68a3b0;
+  color: white;
+  z-index: 3;
+  opacity: 0.9;
+  padding: 1px;
+  font-size: 10px;
+}
+.infobanner {
+  margin: 15px auto;
+  background-size: cover;
+  -moz-background-size: cover;
+  height: 220px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.home-message {
+  background-color: transparent;
+  opacity: .7;
+  text-align: left;
+  -webkit-transition: background 0.3s ease-in-out;
+  transition: background 0.3s ease-in-out;
+  position: relative;
+}
+.home-message:hover {
+  background-color: #1e73be;
+  opacity: .5;
+  /*background-color: rgba(199, 44, 0, 0.6);*/
+}
+.home-message h4 {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: black;
+  font-weight: 900;
+  background-color: #ffffff;
+  padding: 6px;
+  display: block;
+}
+.home-message h5 {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: #555;
+  font-weight: 900;
+  margin: 0;
+  text-align: right;
+  padding: 4px 6px;
+  line-height: normal;
+  background-color: #fff;
+  background-color: #ffffff;
+}
+.music-title-container {
+  padding-top: 50px;
+}
+.music_page_title {
+  position: relative;
+  left: 84px;
+  font-family: "Arial";
+  color: #707070;
+  font-weight: 900;
+  line-height: 2;
+  top: -53px;
+  font-size: 72pt;
+}
+.login-reg-container {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+.login-reg-container h2 {
+  font-size: 72pt;
+  font-family: "Arial";
+  color: rgba(255, 255, 255, 0.839);
+  font-weight: bold;
+  line-height: 1;
+  margin-bottom: 72pt;
+  text-align: center;
+}
+.login-reg-container .login-left {
+  width: 48%;
+  float: left;
+}
+.login-reg-container .login-middle {
+  width: 4%;
+  float: left;
+  height: 100px;
+}
+.login-reg-container .login-middle .form-divider {
+  background-color: #ffffff;
+  left: 50%;
+  opacity: 0.341;
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  margin-left: -1px;
+}
+.login-reg-container .register-right {
+  position: relative;
+  height: 400px;
+  width: 48%;
+  float: left;
+  padding-top: 34px;
+}
+.login-reg-container .login-right {
+  width: 48%;
+  float: left;
+  padding-top: 34px;
+}
+.login-submit {
+  border: 2px solid #0d0f13;
+  background-color: #e7e7e7;
+  opacity: 0.369;
+  color: black;
+  font-weight: bold;
+  height: 52px;
+  font-size: 18px;
+}
+.social-media-register {
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+}
+.fb-btn {
+  background-color: #55acee;
+  height: 52px;
+  color: white;
+}
+.nonactivated_p {
+  font-family: 'arial';
+  font-size: 26px;
+}
+.nonactivated_btn {
+  color: #fff;
+  font-size: 20px;
+  background-color: black;
+  border-color: black;
+}
+.vk-btn {
+  background-color: #3664a2;
+  height: 52px;
+  color: white;
+}
+.login-input {
+  border: 2px solid #ffffff;
+  background-color: #000000;
+  opacity: 0.369;
+  color: white;
+  font-size: 18px;
+  height: 52px;
+}
+.music-hr-top {
+  border: 2px solid #686868 ! important;
+}
+.music-hr-bottom {
+  margin-top: -9pt;
+  border: .3px solid #686868 ! important;
+}
+.music-search {
+  border: 1px solid #68a3b0;
+  background-color: #868686;
+  width: 100%;
+  color: white;
+  height: 23px;
+  font-weight: bold;
+}
+hr {
+  border-top: 2px solid #eeeeee ! important;
+}
+.music-loader {
+  position: absolute;
+  width: 100%;
+  top: -1.5px;
+  height: 103%;
+}
+.music-active-pause .music-loader {
+  border: 4px solid black;
+}
+.music-active-pause .add-music {
+  display: block;
+}
+.music-active-pause .music-item__length {
+  display: block;
+}
+.music-border {
+  border: 1px solid #686868;
+  margin-bottom: 12px;
+  padding: 0px 0px 0px 12px;
+}
+.music-border:hover .music-loader {
+  border: 4px solid black;
+}
+.music-border:hover .add-music {
+  display: block;
+}
+.music-border:hover .music .music__item img {
+  display: block;
+}
+.music-border:hover .music-item__length {
+  display: none;
+}
+.more-music {
+  cursor: pointer;
+}
+.more-music p {
+  color: #56838d;
+  font-family: "Arial";
+  text-decoration: underline;
+  font-size: 17.29pt;
+  font-weight: bold;
+  text-align: center;
+}
+.music {
+  height: 62pt;
+  width: 100%;
+  position: relative;
+}
+.music .music-number {
+  float: left;
+  width: 86px;
+  font-size: 33pt;
+  font-family: "Arial";
+  color: #565656;
+  font-weight: bold;
+  line-height: 2;
+  text-align: right;
+  -moz-transform: matrix(1.10287708, 0, 0, 1.10287708, 0, 0);
+  -webkit-transform: matrix(1.10287708, 0, 0, 1.10287708, 0, 0);
+  -ms-transform: matrix(1.10287708, 0, 0, 1.10287708, 0, 0);
+  padding-right: 20px;
+  height: 100%;
+}
+.music .music__item {
+  float: left;
+  width: auto;
+  height: 100%;
+}
+.music .music__item img {
+  display: none;
+  position: absolute;
+  left: 85.5px;
+}
+.music .music__item .music-item__description {
+  float: left;
+  padding: 22px;
+}
+.music .music__item .music-item__description .music-item__title {
+  font-size: 12pt;
+  font-family: "Arial";
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: underline;
+  line-height: 1.2;
+  text-align: left;
+}
+.music .music__item .music-item__description .music-item__length {
+  position: absolute;
+  right: 98px;
+  top: 41.7px;
+}
+.music .music__item .music-item__description .music-item__artist,
+.music .music__item .music-item__description .music-item__length {
+  font-size: 12pt;
+  font-family: "Arial";
+  color: #939393;
+  font-weight: bold;
+  line-height: 1.2;
+  text-align: left;
+}
+.music .music__item .music-item__img {
+  float: left;
+  width: 62pt;
+  height: 100%;
+  display: inline-block;
+}
+.music-wrapper {
+  margin-left: 101px;
+  margin-right: 101px;
+  margin-top: -8pt;
+}
+.music-page-container {
+  list-style: none;
+  margin: 0px;
+  overflow: auto;
+  padding: 0px 0px 0px 0px;
+}
+.music-air {
+  width: 50%;
+  height: 10px;
+  clear: left;
+  border-right: 2px solid #eeeeee;
+  border-bottom: 2px solid #eeeeee;
+}
+.add-music {
+  cursor: pointer;
+  position: absolute;
+  right: 222px;
+  top: 22px;
+  display: none;
+}
+.add-music img {
+  height: 29pt;
+  width: 29pt;
+}
+.animate {
+  transition: all 3s ease-in-out;
+  -webkit-transition: all 3s ease-in-out;
+  -moz-transition: all 3s ease-in-out;
+  -o-transition: all 3s ease-in-out;
+  -ms-transition: all 3s ease-in-out;
+}

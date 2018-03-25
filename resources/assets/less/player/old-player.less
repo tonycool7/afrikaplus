@@ -1,0 +1,128 @@
+.afrika-audio{
+  position: fixed;
+  z-index: 10;
+  top: 61px;
+  -o-object-fit: inherit;
+  object-fit: inherit;
+  width: 100%;
+  height: 50px;
+  background-color: #ffcc99;
+  audio{
+    position: absolute;
+    visibility: hidden;
+  }
+}
+
+#album-img{
+  position: absolute;
+  right: 0px;
+  top: 5px;
+
+  img{
+    width: 38px;
+  }
+}
+
+*{
+  //border: 1px solid green;
+}
+.audio-head{
+  position: relative;
+  top: 3px;
+  height: 47px;
+  background: linear-gradient(#080808, #2f2f2f);
+  .main-controls{
+    display: table-cell;
+    vertical-align: middle;
+    height: 50px;
+    padding: 0px;
+    list-style: none;
+    li{
+      vertical-align: middle;
+      margin-right: 7px;
+      display: inline-block;
+      color: #ffcc99;
+      cursor: pointer;
+    }
+  }
+}
+
+.album-content{
+  background-color: white;
+  height: auto;
+  display: none;
+  position: absolute;
+  top: 50px;
+  padding: 10px 0px 10px 30px;
+  box-shadow: 0px 2px 13px grey;
+  li{
+    font-family: arial;
+    color: black;
+    font-size: 12px;
+    span{
+      display: none;
+      color: #ea7739;
+    }
+  }
+
+  li.active{
+    span{
+      display: inline;
+    }
+  }
+}
+
+.audio-body{
+  padding: 0px;
+  position: relative;
+  .secondary-controls{
+    .audio-head .main-controls;
+    z-index: 400;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+  }
+  .album-title{
+    padding: 11px 0px 0px 20px;
+    color: black;
+    font-weight: 900;
+    z-index: 400;
+    margin: 0px;
+    line-height: 1;
+    font-size: 18px;
+    position: relative;
+  }
+  .player-time{
+    padding: 0px 0px 0px 20px;
+    z-index: 400;
+    font-size: 16px;
+    color: black;
+    position: relative;
+    display: block;
+    font-weight: 400;
+  }
+  .total-length{
+    position: absolute;
+    width: 100%;
+    top: 3px;
+    height: 47px;
+    z-index: 100;
+    background-color: #6b6b6b;
+  }
+
+  .loaded-length{
+    position: absolute;
+    z-index: 200;
+    top: 3px;
+    height: 47px;
+    background-color: #978878;
+  }
+
+  .current-length{
+    position: absolute;
+    top: 3px;
+    height: 47px;
+    z-index: 300;
+    background-color: #ffcc99;
+  }
+}

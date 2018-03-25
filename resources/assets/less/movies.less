@@ -1,0 +1,369 @@
+body{
+  background-color: rgb(37, 37, 37) ! important;
+}
+
+.movies-container{
+  margin-top: 30pt;
+  height: auto;
+  .movies-row{
+    max-width: 1000pt;
+    width: 100%;
+    margin: auto;
+    .most-watch-title{
+      font-family: "Arial Bold", "Arial";
+      font-weight: 900;
+      font-size: 35pt;
+
+      text-align: left;
+      color: white;
+    }
+    .most-watch-movies{
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+  }
+}
+
+.load-more-movies{
+  background-color: black;
+  margin-top: 30pt;
+  width: 100%;
+  cursor: pointer;
+
+  p{
+    font-family: "Arial Bold", "Arial";
+    font-weight: bold;
+    font-size: 14pt;
+    text-decoration: underline;
+    text-align: center;
+    color: white;
+  }
+}
+
+.movie-desc{
+  display: none;
+  position: absolute;
+  bottom: 10pt;
+  left: 3pt;
+  span{
+    display: block;
+    font-family: "Arial Bold", "Arial";
+    font-weight: bold;
+    font-size: 11pt;
+    text-align: left;
+    color: white;
+  }
+}
+
+.hyenas{
+  width: 34%;
+  height: 118.8pt;
+  background-image: url(/storage/movies/hyenas.png);
+  position: absolute;
+  top: 0pt;
+  left: 0pt;
+  &::before{
+    width: 100%;
+    height: 100%;
+    content: '';
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 91, 127, .7);
+  }
+
+  &:hover::before{
+    display: block;
+  }
+
+  &:hover{
+    .movie-desc{
+      display: block;
+    }
+  }
+}
+
+.black_girl{
+  width: 27%;
+  height: 118.8pt;
+  background-image: url(/storage/movies/black_girl.png);
+  position: absolute;
+  top: 0pt;
+  left: 34%;
+  &::before{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    content: '';
+    display: none;
+    background-color: rgba(0, 91, 127, .7);
+  }
+  &:hover::before{
+    display: block;
+  }
+  &:hover{
+    .movie-desc{
+      display: block;
+    }
+  }
+}
+
+
+.tsotsi{
+  width: 18%;
+  height: 81.36pt;
+  background-image: url(/storage/movies/tsosti.png);
+  position: absolute;
+  top: 0pt;
+  left: 61%;
+  &::before{
+    width: 100%;
+    height: 100%;
+    content: '';
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 91, 127, .7);
+  }
+  &:hover::before{
+    display: block;
+  }
+  &:hover{
+    .movie-desc{
+      display: block;
+    }
+  }
+}
+
+.hotel_rwanda{
+  width: 20%;
+  height: 81.36pt;
+  background-image: url(/storage/movies/hotel.png);
+  position: absolute;
+  top: 0pt;
+  left: 79%;
+  &::before{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    content: '';
+    display: none;
+    background-color: rgba(0, 91, 127, .7);
+  }
+  &:hover::before{
+    display: block;
+  }
+  &:hover{
+    .movie-desc{
+      display: block;
+    }
+  }
+}
+
+.sambizanga{
+  width: 40%;
+  height: 156.24pt;
+  position: absolute;
+  background-image: url(/storage/movies/sambizanga.png);
+  top: 118.9pt;
+  left: 0pt;
+  &::before{
+    width: 100%;
+    height: 100%;
+    content: '';
+    position: absolute;
+    display: none;
+    background-color: rgba(0, 91, 127, .7);
+  }
+  &:hover::before{
+    display: block;
+  }
+  &:hover{
+    .movie-desc{
+      display: block;
+    }
+  }
+}
+
+.osofia{
+  width: 21%;
+  height: 86.8pt;
+  background-image: url(/storage/movies/asofiainlodon.png);
+  position: absolute;
+  top: 118pt;
+  left: 40%;
+  &::before{
+    width: 100%;
+    height: 100%;
+    content: '';
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 91, 127, .7);
+  }
+  &:hover::before{
+    display: block;
+  }
+  &:hover{
+    .movie-desc{
+      display: block;
+    }
+  }
+}
+
+.de_voe{
+  height: 71pt;
+  width: 11%;
+  background-image: url(/storage/movies/de_Voe.png);
+  position: absolute;
+  top: 204pt;
+  left: 39%;
+  .movie-desc{
+    span{
+      font-size: 6pt;
+    }
+  }
+  &::before{
+    width: 100%;
+    height: 100%;
+    content: '';
+    position: absolute;
+    display: none;
+    background-color: rgba(0, 91, 127, .7);
+  }
+  &:hover::before{
+    display: block;
+  }
+  &:hover{
+    .movie-desc{
+      display: block;
+    }
+  }
+}
+
+.from_a_whisper {
+  height: 123.68pt;
+  width: 38%;
+  position: absolute;
+  top: 82pt;
+  background-image: url(/storage/movies/from_a_whisper.png);
+  left: 61%;
+  &::before{
+    width: 100%;
+    height: 100%;
+    content: '';
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 91, 127, .7);
+  }
+  &:hover::before{
+    display: block;
+  }
+  &:hover{
+    .movie-desc{
+      display: block;
+    }
+  }
+}
+
+.district9{
+  height: 146.88pt;
+  width: 50%;
+  background-image: url(/storage/movies/district9.png);
+  position: absolute;
+  top: 275pt;
+  left: 0pt;
+  &::before{
+    width: 100%;
+    height: 100%;
+    content: '';
+    position: absolute;
+    display: none;
+    background-color: rgba(0, 91, 127, .7);
+  }
+  &:hover::before{
+    display: block;
+  }
+  &:hover{
+    .movie-desc{
+      display: block;
+    }
+  }
+}
+
+.come_back_afrika{
+  height: 218pt;
+  background-image: url(/storage/movies/come_back_afrika.png);
+  width: 49%;
+  position: absolute;
+  top: 205pt;
+  right: 1%;
+  &::before{
+    width: 100%;
+    height: 100%;
+    content: '';
+    position: absolute;
+    transition: all .2s ease-in-out;
+    display: none;
+    background-color: rgba(0, 91, 127, .7);
+  }
+  &:hover::before{
+    display: block;
+  }
+  &:hover{
+    .movie-desc{
+      display: block;
+    }
+  }
+}
+
+
+.movie-vidoe-container{
+  height: 246.56pt;
+  width: 100%;
+  margin-left: 0;
+  background-color: black;
+  position: relative;
+
+  .movie-video-title{
+    font-family: "Arial Bold", "Arial";
+    font-weight: 900;
+    font-size: 15pt;
+    text-align: left;
+    color: white;
+    padding: 6pt;
+  }
+
+  .movie-vidoe{
+    width: 100%;
+    height: 161.28pt;
+    position: absolute;
+    bottom: 0;
+    margin: auto;
+    top: 0;
+    img{
+      position: absolute;
+      margin: auto;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 57.6pt;
+      height: 57.6pt;
+      cursor: pointer;
+      transition: all .3s linear;
+      &:hover {
+        transform: scale(1.3);
+      }
+    }
+  }
+
+  .video1{
+    background-image: url(/storage/movies/black_panther.jpg);
+  }
+
+  .video2{
+    background-image: url(/storage/movies/movie2.jpg);
+  }
+}
+
+
+

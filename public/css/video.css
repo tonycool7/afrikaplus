@@ -1,0 +1,19 @@
+.main-video {
+  margin-top: 100px;
+  max-width: 1024px;
+  height: 400px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+.video-container {
+  margin-bottom: 100px;
+}
+.videos {
+  width: 80%;
+  margin: auto;
+  padding-top: 38px;
+}
+.video-item {
+  margin-top: 20px;
+  height: 260px;
+}
