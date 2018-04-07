@@ -13,19 +13,19 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    {{--<meta name="viewport" content="width=device-width, initial-scale=1">--}}
-    <meta name="format-detection" content="telephone=no"><meta http-equiv="Content-Language" content="en-US">
-    <meta name="keywords" content="Afrikaplus, listen, music, online, audio, songs, afrikaplustheworld, shop,entertainment,afrikaplustheworld,news,dance, events, africanmusic, parties, entertainment,culture, art "/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{--<meta name="format-detection" content="telephone=no">--}}
+    <meta http-equiv="Content-Language" content="en-US">
+    <meta name="keywords" content="Afrikaplus, AfrikaPlus, afrikaplus, listen, music, online, audio, songs, afrikaplustheworld, shop,entertainment,afrikaplustheworld,news,dance, events, africanmusic, parties, entertainment,culture, art "/>
     <meta name="robots" content="index/follow"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="DC.title" content="Afrikaplustheworld"/>
 
     <meta name="description" content="Afrikaplustheworld is a world where you relax, enjoy the afrikan sound, get updates on events, listen to music, create your playlist and enjoy the african culture.">
-    <meta name="news_keywords" content="African entertainment,music, songs, listen,dance,afrikaplustheworld, afrikaplus african news, african events, african music, african parties" />
+    <meta name="news_keywords" content="Afrikaplus,AfrikaPlus, African entertainment,music, songs, listen,dance,afrikaplustheworld, afrikaplus african news, african events, african music, african parties" />
 
     <meta itemprop="name" content="Afrikaplustheworld entertainment">
     <meta itemprop="description" content="Abundance of african music and sounds - african events and parties">
-    <meta name="description" content="Afrikaplustheworld Events - Music - Parties - News - Videos - Dance videos" />
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Afrikaplustheworld - African Music - African Sounds - African Dances and videos.">
@@ -112,15 +112,15 @@
                                 <i class="fa fa-music fa-4x"></i>
                             </a>
                             <a href="/shop" target="_blank" class="africa-col-4 menu menu-tv" >
-                                <span>Africa+ TV</span>
-                                <i class="fa fa-television fa-4x"></i>
+                                <span>Shop</span>
+                                <i class="fa fa-shopping-bag fa-4x"></i>
                             </a>
                         </div>
                         <div class="row">
                             <div class="africa-col-4"></div>
                             <a href="/album" class="africa-col-4 menu menu-movies">
-                                <span>Movies</span>
-                                <i class="fa fa-file-movie-o fa-4x"></i>
+                                <span>Album</span>
+                                <i class="fa fa-play-circle-o fa-4x"></i>
                             </a>
                             <div class="africa-col-4"></div>
                         </div>

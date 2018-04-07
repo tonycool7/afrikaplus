@@ -922,6 +922,83 @@ footer .footer-list ul li a:hover {
   color: #d7d7d7;
   margin-right: 13.5px;
 }
+.mobile-section {
+  display: none;
+  position: relative;
+  top: 90px;
+}
+.mobile-title {
+  font-family: 'Arial Bold', 'Arial';
+  font-size: 30px;
+  text-align: center;
+  color: black;
+}
+.intro-mobile div img {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  display: block;
+}
+.music-mobile div .music-content {
+  width: 95%;
+  max-width: 400px;
+  margin: auto;
+  position: relative;
+  height: 500px;
+  max-height: 500px;
+}
+.music-mobile div .music-content .music-playlist {
+  height: 500px;
+  margin-top: -500px;
+}
+.footer-mobile {
+  width: 100%;
+  height: 200px;
+  background-color: #434343;
+}
+.col-2 {
+  width: 16.6%;
+  float: left;
+  text-align: center;
+  margin-top: 84px;
+}
+.col-2 a {
+  color: white;
+}
+.shop-mobile .row div img {
+  margin: auto;
+  display: block;
+  max-width: 500px;
+  width: 100%;
+}
+.events-mobile .row div img {
+  width: 100%;
+  margin: auto;
+  display: block;
+  max-width: 400px;
+}
+.mobile-row {
+  margin: auto;
+  width: 100%;
+  max-width: 500px;
+}
+.mobile-btn {
+  width: 50%;
+  float: left;
+}
+.mobile-btn .mobile-btn__btn {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid white;
+  width: 90%;
+  margin: 5px auto;
+  color: white;
+  background-color: #68a3b0;
+}
+.mobile-btn:hover .mobile-btn__btn {
+  background-color: black;
+  color: white;
+}
 .subscribe-label {
   font-family: 'Arial Narrow', 'Arial';
   margin-bottom: 10px;
@@ -930,33 +1007,6 @@ footer .footer-list ul li a:hover {
 @media screen and (max-width: 600px) {
   section {
     min-height: 500px;
-  }
-  .music-container,
-  .music-album,
-  .news-block,
-  .tv-block,
-  .events-block {
-    margin-top: 0px ! important;
-    display: none ! important;
-  }
-  .music-videos__wrapper,
-  .movies-block__wrapper,
-  .events-block__wrapper {
-    margin-top: 0px ! important;
-  }
-  .trending-music,
-  .new-trending,
-  .culture-block,
-  .shopping-block,
-  .tv-block,
-  .music-album,
-  .music-videos,
-  .movies-block,
-  .news-block,
-  footer,
-  .events-block {
-    top: 0px;
-    display: none ! important;
   }
   .trending-music .custom-container {
     margin-top: 106px;
@@ -983,12 +1033,26 @@ footer .footer-list ul li a:hover {
     margin: auto ! important;
   }
 }
+@media screen and (max-width: 400px) {
+  .mobile-btn {
+    width: 100%;
+  }
+}
 @media screen and (max-width: 1024px) {
   .music-item {
     height: 400px ! important;
   }
 }
 @media screen and (max-width: 1015px) {
+  .mobile-section {
+    display: block;
+  }
+  .intro {
+    display: none;
+  }
+  .music-container {
+    width: 90%;
+  }
   .music-container,
   .music-album,
   .news-block,

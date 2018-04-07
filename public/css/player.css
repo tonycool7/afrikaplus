@@ -149,3 +149,9 @@
   display: block;
   font-weight: 400;
 }
+@media screen and (max-width: 1015px) {
+  .afrika-audio {
+    top: 54px;
+    left: 10px;
+  }
+}

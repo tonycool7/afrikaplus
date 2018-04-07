@@ -373,11 +373,16 @@ hr {
   text-decoration: underline;
   line-height: 1.2;
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 200px;
+  display: inline-block;
 }
 .music .music__item .music-item__description .music-item__length {
   position: absolute;
   right: 98px;
-  top: 41.7px;
+  top: 48.7px;
 }
 .music .music__item .music-item__description .music-item__artist,
 .music .music__item .music-item__description .music-item__length {
@@ -395,8 +400,8 @@ hr {
   display: inline-block;
 }
 .music-wrapper {
-  margin-left: 101px;
-  margin-right: 101px;
+  margin-left: 99px;
+  margin-right: 95px;
   margin-top: -8pt;
 }
 .music-page-container {
@@ -429,4 +434,98 @@ hr {
   -moz-transition: all 3s ease-in-out;
   -o-transition: all 3s ease-in-out;
   -ms-transition: all 3s ease-in-out;
+}
+@media screen and (max-width: 600px) {
+  .login-reg-container h2 {
+    font-size: 43pt;
+  }
+  .login-reg-container .login-right {
+    width: 100%;
+    float: left;
+    height: 0px;
+  }
+  .login-reg-container .login-right a {
+    margin-bottom: 100px;
+    display: block;
+  }
+  .login-reg-container .register-right {
+    padding-top: 150px;
+    width: 100%;
+    float: left;
+    height: 0px;
+  }
+  .login-reg-container .register-right a {
+    margin-bottom: 100px;
+    display: block;
+  }
+  .login-reg-container .login-middle {
+    display: none;
+  }
+  .login-reg-container .login-left {
+    width: 100%;
+  }
+  .music-wrapper {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  .add-music {
+    right: 53px;
+  }
+  .music .music-number {
+    display: none;
+  }
+  .music .music__item img {
+    left: -0.5px;
+  }
+  .music .music__item .music-item__description .music-item__length {
+    right: 16px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .news-container .main-title {
+    width: 100% !important;
+    font-size: 32px !important;
+  }
+}
+@media screen and (max-width: 750px) {
+  .music_page_title {
+    line-height: 3;
+    top: -54px;
+    display: block;
+    text-align: center;
+    font-size: 43pt;
+    left: 0px;
+  }
+  .audio-head .main-controls {
+    padding: 0px !important;
+  }
+  .album-list {
+    display: none !important;
+  }
+  .album__image {
+    left: 0px !important;
+  }
+  .album-music__title,
+  .album-music__artist {
+    font-size: 13px !important;
+  }
+  .album-descr {
+    left: 13px !important;
+  }
+  .album-volume {
+    display: none !important;
+  }
+  .event-container .main-title {
+    font-size: 32px !important;
+  }
+  .event-container .afrikaplusevents-decr {
+    margin: 0pt 25pt 0pt 25pt !important;
+    padding: 2px !important;
+  }
+  .audio-head .main-controls .album-add {
+    position: static !important;
+  }
+  .audio-head .main-controls .album-repeat {
+    position: static !important;
+  }
 }

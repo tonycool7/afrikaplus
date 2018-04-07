@@ -196,7 +196,8 @@ body, html{
     height: 173pt;
     border: 1px solid #000;
     border-radius: 4px;
-    width: 292pt;
+    max-width: 292pt;
+    width: 90%;
     margin: 16px;
   }
 
@@ -226,7 +227,7 @@ body, html{
 .more-albums{
   background-color: black;
   margin-top: 30pt;
-  width: 90%;
+  width: 100%;
   cursor: pointer;
   p{
     font-family: "Arial Bold", "Arial";
@@ -234,5 +235,23 @@ body, html{
     font-size: 14pt;
     text-align: center;
     color: white;
+  }
+}
+
+@media screen and (max-width: 750px){
+  .album{
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+  }
+
+  .all-albums{
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+
+  }
+
+  .album-search{
+    padding-left: 37px;
+    padding-right: 37px;
   }
 }

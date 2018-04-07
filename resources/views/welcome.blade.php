@@ -41,7 +41,7 @@
                     <ol class="album-content col-md-3 col-lg-3 col-xs-6 col-sm-6"></ol>
                 </div>
             </main>
-            <ol class="playlist-wiz" style="visibility: hidden" data-thumbnail="">
+            <ol class="playlist-wiz" style="visibility: hidden; position: absolute;" data-thumbnail="">
                 @foreach($songs as $item)
                     <li data-value="{{$item->music_path}}">{{$item->name}}<span><i class="fa fa-play"></i></span></li>
                 @endforeach
@@ -383,35 +383,180 @@
             </section>
             {{--end of shopping section--}}
 
-        {{--start of movies section--}}
-        {{--<section class="container-fluid movies-block">--}}
-            {{--<div class="custom-container">--}}
-                {{--<h1 class="section-title">movies</h1>--}}
+            {{--mobile version--}}
+            <div class="mobile-section">
+                <div class="container intro-mobile">
+                    <div class="row">
+                        <h2 class="mobile-title">Welcome to <strong>Afrika+</strong></h2>
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <img src="/images/africa/africa.jpg">
+                        </div>
+                        <br>
+                        <div class="row mobile-row">
+                            <div class="mobile-btn">
+                                <a href="/register" class="btn btn-block mobile-btn__btn">
+                                    Sign up
+                                </a>
+                            </div>
+                            <div class="mobile-btn">
+                                <a href="/login" class="btn btn-block mobile-btn__btn">
+                                    Login
+                                </a>
+                            </div>
+                        </div>
 
-            {{--</div>--}}
-        {{--</section>--}}
-        {{--end of movies section--}}
+                    </div>
+                </div>
 
-        {{--start of tv section--}}
-        {{--<section class="container-fluid tv-block">--}}
+                <div class="container music-mobile">
+                    <div class="row">
+                        <h2 class="mobile-title">Listen to unlimited music from Afrika+</h2>
+                        <div class="music-content">
+                            <div class="music-playlist black-bg">
+                                <br/>
+                                <h3>Davido</h3>
+                                <h3>SKELEWU</h3>
+                                <br/>
+                                <ul class="playlist" data-thumbnail="storage/images/davido.jpg">
+                                    <li data-value="Davido-Aye.mp3">Davido-Aye <span><i class="fa fa-play"></i></span></li>
+                                    <li data-value="Davido-Fall.mp3">Davido-Fall <span><i class="fa fa-play"></i></span></li>
+                                    <li data-value="Davido-FIA.mp3">Davido-FIA <span><i class="fa fa-play"></i></span></li>
+                                    <li data-value="Davido-Gobe.mp3">Davido-Gobe <span><i class="fa fa-play"></i></span></li>
+                                    <li data-value="Davido-If.mp3">Davido-If <span><i class="fa fa-play"></i></span></li>
+                                    <li data-value="Davido-Like Dat.mp3">Davido-Like Dat <span><i class="fa fa-play"></i></span></li>
+                                    <li data-value="Davido-Skelewu.mp3">Davido-Skelewu <span><i class="fa fa-play"></i></span></li>
+                                </ul>
+                                <div>
+                                    <i class="fa fa-pause-circle fa-3x"></i>
+                                    <i class="fa fa fa-caret-up fa-5x"></i>
+                                </div>
+                            </div>
+                            <div class="music-item">
+                                <br/>
+                                <h3 class="text-black">Davido</h3>
+                                <h3 class="text-black">SKELEWU</h3>
+                                <img src="storage/images/davido.jpg">
+                                {{--<div class="music-item__thumbnail contain-bg" style="background-image: url(images/ft_album2.jpg)"></div>--}}
+                                <div class="music-item__play">
+                                    <i class="fa fa-play-circle fa-3x text-black"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row mobile-row">
+                            <div class="mobile-btn">
+                                <a href="/register" class="btn btn-block mobile-btn__btn">
+                                    Sign up
+                                </a>
+                            </div>
+                            <div class="mobile-btn">
+                                <a href="/music" class="btn btn-block mobile-btn__btn">
+                                    Music
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        {{--</section>--}}
-        {{--end of tv section--}}
+                <div class="container video-mobile">
+                    <div class="row">
+                        <h2 class="mobile-title">Watch entertaining videos from <strong>Afrika+</strong></h2>
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <iframe width="100%" height="500" src="https://www.youtube.com/embed/ccjrcCvZUq0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
+                        <br>
+                        <div class="row mobile-row">
+                            <div class="mobile-btn">
+                                <a href="/register" class="btn btn-block mobile-btn__btn">
+                                    Sign up
+                                </a>
+                            </div>
+                            <div class="mobile-btn">
+                                <a href="/videos" class="btn btn-block mobile-btn__btn">
+                                    Videos
+                                </a>
+                            </div>
+                        </div>
 
-        {{--start of arts&culture section--}}
-        {{--<section class="container-fluid culture-block contain-bg" style="background-position: center 55px; background-image: url(images/culture.png)">--}}
-            {{--<div class="custom-container">--}}
-                {{--<h1 class="section-title">arts & culture</h1>--}}
-                {{--<div class="culture-block__wrapper">--}}
-                    {{--<div class="explore-artculture">--}}
-                        {{--<a href="/arts_culture">explore</a>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</section>--}}
-        {{--end of arts and culture section--}}
+                    </div>
+                </div>
 
-        {{--footer--}}
+                <div class="container events-mobile">
+                    <div class="row">
+                        <h2 class="mobile-title">Get updates on <strong>Afrika+</strong> events</h2>
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <img src="/images/africa/polyrap.jpg">
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row mobile-row">
+                            <div class="mobile-btn">
+                                <a href="/register" class="btn btn-block mobile-btn__btn">
+                                    Sign up
+                                </a>
+                            </div>
+                            <div class="mobile-btn">
+                                <a href="/events" class="btn btn-block mobile-btn__btn">
+                                    Events
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="container shop-mobile">
+                    <div class="row">
+                        <h2 class="mobile-title">Visit Daweng shop for the best fashion designs</h2>
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <img src="images/shop/children.jpg">
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row mobile-row">
+                            <div class="mobile-btn">
+                                <a href="/register" class="btn btn-block mobile-btn__btn">
+                                    Sign up
+                                </a>
+                            </div>
+                            <div class="mobile-btn">
+                                <a href="/shop" target="_blank" class="btn btn-block mobile-btn__btn">
+                                    Shop
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="container footer-mobile">
+                    <div class="row">
+                        <div class="footer-mobile_mobile">
+                            <div class="col-2">
+                                <a href=""><i class="fa fa-facebook fa-2x"></i></a>
+                            </div>
+                            <div class="col-2">
+                                <a href=""><i class="fa fa-twitter fa-2x"></i></a>
+                            </div>
+                            <div class="col-2">
+                                <a href=""><i class="fa fa-google-plus fa-2x"></i></a>
+                            </div>
+                            <div class="col-2">
+                                <a href=""><i class="fa fa-vk fa-2x"></i></a>
+                            </div>
+                            <div class="col-2">
+                                <a href=""><i class="fa fa-youtube fa-2x"></i></a>
+                            </div>
+                            <div class="col-2">
+                                <a href=""><i class="fa fa-instagram fa-2x"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{--end of mobile version--}}
+
         <footer class="container-fluid">
             <div class="custom-container">
                 <div class="col-md-3 col-lg-3 col-xs-12 col-sm-12">
@@ -491,21 +636,42 @@
                 playlist : $('.playlist-wiz')
             });
 
-            $('.music-item__play .fa-play-circle').click(function(){
-                $('.music-content .music-playlist').animate({
-                    marginTop: '-60vh'
+            if ( $(window).width() > 1015) {
+                $('.music-item__play .fa-play-circle').click(function(){
+                    $('.music-content .music-playlist').animate({
+                        marginTop: '-60vh'
+                    });
+                    $(this).closest('.music-content').find('.music-playlist').animate({
+                        marginTop: '0px'
+                    });
+                    play.changePlaylist($(this).closest('.music-content').find('.playlist'));
                 });
-                $(this).closest('.music-content').find('.music-playlist').animate({
-                    marginTop: '0px'
-                });
-                play.changePlaylist($(this).closest('.music-content').find('.playlist'));
-            });
 
-            $('.music-playlist .fa-caret-up').click(function(){
-                $(this).closest('.music-content').find('.music-playlist').animate({
-                    marginTop: '-60vh'
+                $('.music-playlist .fa-caret-up').click(function(){
+                    $(this).closest('.music-content').find('.music-playlist').animate({
+                        marginTop: '-60vh'
+                    });
                 });
-            });
+            }
+            else {
+                $('.music-item__play .fa-play-circle').click(function(){
+                    $('.music-content .music-playlist').animate({
+                        marginTop: '-500px'
+                    });
+                    $(this).closest('.music-content').find('.music-playlist').animate({
+                        marginTop: '0px'
+                    });
+                    play.changePlaylist($(this).closest('.music-content').find('.playlist'));
+                });
+
+                $('.music-playlist .fa-caret-up').click(function(){
+                    $(this).closest('.music-content').find('.music-playlist').animate({
+                        marginTop: '-500px'
+                    });
+                });
+            }
+
+
         });
 
     </script>

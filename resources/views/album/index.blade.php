@@ -9,7 +9,7 @@
 @section('content')
     <div class="container-fluid album">
         @foreach($featured as $item)
-            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-6">
+            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
                 <a href="/album/{{$item->id}}" class="album-item">
                     <div class="album-image default-bg" style="background-image: url({{'/storage/images/'.$item->image_path}})">
 
@@ -29,7 +29,7 @@
 
     <div class="container-fluid all-albums">
         @foreach($albums as $item)
-            <div class="col-md-2 col-lg-2 col-sm-3 col-xs-6">
+            <div class="col-md-2 col-lg-2 col-sm-6 col-xs-12">
                 <a href="/album/{{$item->id}}" class="album-item">
                     <div class="album-image default-bg" style="background-image: url({{'/storage/images/'.$item->image_path}})">
 
