@@ -67,15 +67,16 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="/music">Music</a><span class="item-focus"></span></li>
-                        <li><a href="/videos">Videos</a><span class="item-focus"></span></li>
-                        <li><a href="/album">Album</a><span class="item-focus"></span></li>
-                        <li><a href="/djmix">DJ mix</a><span class="item-focus"></span></li>
-                        <li><a href="/news">News</a><span class="item-focus"></span></li>
                         <li><a href="/events">Events</a><span class="item-focus"></span></li>
+                        <li><a href="/videos">Videos</a><span class="item-focus"></span></li>
+                        <li class="active"><a href="/music">Music</a><span class="item-focus"></span></li>
                         <li><a href="/movies">Movies</a><span class="item-focus"></span></li>
+                        <li><a href="/news">Inside Afrika</a><span class="item-focus"></span></li>
+                        <li><a href="/album">Album</a><span class="item-focus"></span></li>
+                        {{--<li><a href="/album">Messages</a><span class="item-focus"></span></li>--}}
+                        <li><a href="/djmix">DJ mix</a><span class="item-focus"></span></li>
                         <li><a href="/shop" target="_blank">Shop</a><span class="item-focus"></span></li>
-                        <li><a href="/discovery">Discovery</a><span class="item-focus"></span></li>
+                        {{--<li><a href="/discovery">Discovery</a><span class="item-focus"></span></li>--}}
                         @if(\Auth::guard()->check())
                         <li><form action="/logout" method="post" style="display: none" id="logout">{{csrf_field()}}</form><a href="javascript:(document.getElementById('logout').submit());">logout</a></li>
                         @endif

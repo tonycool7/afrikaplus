@@ -1,4 +1,4 @@
-<?php
+r<?php
 /**
  * This file is part of Jrean\UserVerification package.
  *

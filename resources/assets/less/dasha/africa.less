@@ -203,6 +203,11 @@
   font-size: 72pt;
 }
 
+.login-container{
+  width: 350px;
+  margin: auto;
+}
+
 .login-reg-container{
   margin-top: 100px;
   margin-bottom: 100px;
@@ -212,42 +217,8 @@
     color: rgba(255, 255, 255, 0.839);
     font-weight: bold;
     line-height: 1;
-    margin-bottom: 72pt;
+    margin-bottom: 30pt;
     text-align: center;
-  }
-
-  .login-left{
-    width: 48%;
-    float: left;
-  }
-
-  .login-middle{
-    width: 4%;
-    float: left;
-    height: 100px;
-    .form-divider{
-      background-color: rgb(255, 255, 255);
-      left: 50%;
-      opacity: 0.341;
-      position: absolute;
-      width: 2px;
-      height: 100%;
-      margin-left: -1px;
-    }
-  }
-
-  .register-right{
-    position: relative;
-    height: 400px;
-    width: 48%;
-    float: left;
-    padding-top: 34px;
-  }
-
-  .login-right{
-    width: 48%;
-    float: left;
-    padding-top: 34px;
   }
 
 }
@@ -262,17 +233,6 @@
   font-size: 18px;
 }
 
-.social-media-register{
-  position: absolute;
-  width: 100%;
-  bottom: 0px;
-}
-
-.fb-btn{
-    background-color: rgb(85, 172, 238);
-    height: 52px;
-    color: white;
-}
 
 .nonactivated_p{
   font-family: 'arial';
@@ -286,11 +246,6 @@
   border-color: black;
 }
 
-.vk-btn{
-  background-color: rgb(54, 100, 162);
-  height: 52px;
-  color: white;
-}
 
 .login-input{
   border: 2px solid rgb(255, 255, 255);
@@ -311,12 +266,26 @@
 
 }
 
+.btn-search-music{
+  background-color: black;
+  border-color: black;
+  width: 20%;
+  float: left;
+  height: 32px;
+  color: white;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
 .music-search{
   border: 1px solid #68a3b0;
   background-color: #868686;
-  width: 100%;
+  width: 80%;
+  float: left;
   color: white;
-  height: 23px;
+  height: 30px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
   font-weight: bold;
 }
 
@@ -496,32 +465,7 @@ hr{
   .login-reg-container h2{
     font-size: 43pt;
   }
-  .login-reg-container{
-    .login-right{
-      width: 100%;
-      float: left;
-      height: 0px;
-      a{
-        margin-bottom: 100px;
-        display: block;
-      }
-    }
-  }
-  .login-reg-container {
-    .register-right {
-      padding-top: 150px;
-      .login-reg-container .login-right;
-    }
-  }
-
-  .login-reg-container .login-middle{
-    display: none;
-  }
-
-  .login-reg-container .login-left{
-    width: 100%;
-  }
-
+  //vk-
   .music-wrapper{
     margin-left: 15px;
     margin-right: 15px;
@@ -563,7 +507,6 @@ hr{
   .music_page_title{
     line-height: 3;
     top: -54px;
-    display: block;
     text-align: center;
     font-size: 43pt;
     left:0px;

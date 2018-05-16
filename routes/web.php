@@ -92,9 +92,15 @@ Route::get('/afrika/admin/music', function (){
     return redirect('/afrika/admin');
 });
 
-Route::get('/profile', function (){
-    return view('profile');
-})->middleware('auth', 'isVerified');
+Route::resource('/profile', 'Afrikaplus\\ProfileController');
+
+Route::resource('/posts', 'Afrikaplus\\PostsController');
+
+Route::get('/fetch_user/{username}', 'Afrikaplus\\ProfileController@showJson');
+
+Route::post('/music_search', 'Afrikaplus\\MusicController@searchMusic');
+
+Route::post('/avatar', 'Afrikaplus\\ProfileController@uploadAvatar');
 
 Route::resource('/album', 'Afrikaplus\\AlbumController');
 Route::resource('/videos', 'Afrikaplus\\VideoController');

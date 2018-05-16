@@ -47,8 +47,6 @@
                 @endforeach
             </ol>
 
-        {{--End of featuring album section--}}
-
             {{--New section--}}
             <section class="container-fluid default-bg intro">
                 <img src="/images/africa/africa.jpg">
@@ -57,6 +55,67 @@
                 </div>
             </section>
             {{--end of new section--}}
+
+            {{--start of events section--}}
+            <section class="container-fluid events-block">
+                <div class="custom-container">
+                    <h1 class="section-title">events</h1>
+                    <div class="event-bg default-bg">
+                        <h3>Afrika+ events</h3>
+                        <p>Be present at our mind blowing events, meet the best african DJs,<br/> dance the dance and feel the african music.</p>
+                        <div class="buy-merchandise-block">
+                            <a href="/events" target="_blank">More events</a>
+                        </div>
+                        <div class="more-events">
+                            <div class="more-events_item default-bg" style="background-image: url(/images/africa/djsnake.jpg)">
+                                <a href="javascript:" class="btn btn-sm btn-event">Learn more</a>
+                            </div>
+                            <div class="more-events_item default-bg" style="background-image: url(/images/africa/christmas.jpg)">
+                                <a href="javascript:" class="btn btn-sm btn-event">Learn more</a>
+                            </div>
+                            <div class="more-events_item default-bg" style="background-image: url(/images/africa/polyrap.jpg)">
+                                <a href="javascript:" class="btn btn-sm btn-event">Learn more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {{--end of events section--}}
+
+            {{--Videos section--}}
+            <section class="container-fluid music-videos">
+                <h1 class="section-title">video</h1>
+                <div class="poster-main" id="carousel" data-setting='{
+							"width":1000,
+							"height":400,
+							"posterWidth":600,
+							"posterHeight":400,
+							"scale":0.8,
+							"speed":1000,
+							"autoPlay":true,
+							"delay":10000,
+							"verticalAlign":"middle"
+							}'>
+                    <div class="poster-btn poster-prev-btn"></div>
+                    <ul class="poster-list">
+                        <li class="poster-item">
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/v_sMYUVyw4I" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                        </li>
+                        <li class="poster-item">
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/j2u5Gbadn7o" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                        </li>
+                        <li class="poster-item">
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/8ORvJcpe2Oc" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                        </li>
+                    </ul>
+                    <div class="poster-btn poster-next-btn"></div>
+                    <div class="buy-merchandise-block" style="margin: auto;">
+                        <a href="/videos" target="_blank">WATCH MORE</a>
+                    </div>
+                </div>
+            </section>
+            {{--End of videos section--}}
+
 
             {{--Music album section--}}
             <section class="container-fluid music-album">
@@ -170,75 +229,6 @@
             </section>
             {{--End of music album section--}}
 
-            {{--Videos section--}}
-            <section class="container-fluid music-videos">
-                <h1 class="section-title">video</h1>
-                <div class="poster-main" id="carousel" data-setting='{
-							"width":1000,
-							"height":400,
-							"posterWidth":600,
-							"posterHeight":400,
-							"scale":0.8,
-							"speed":1000,
-							"autoPlay":true,
-							"delay":10000,
-							"verticalAlign":"middle"
-							}'>
-                    <div class="poster-btn poster-prev-btn"></div>
-                    <ul class="poster-list">
-                        <li class="poster-item">
-                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/v_sMYUVyw4I" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
-                        </li>
-                        <li class="poster-item">
-                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/j2u5Gbadn7o" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
-                        </li>
-                        <li class="poster-item">
-                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/8ORvJcpe2Oc" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
-                        </li>
-                    </ul>
-                    <div class="poster-btn poster-next-btn"></div>
-                    <div class="buy-merchandise-block" style="margin: auto;">
-                        <a href="/videos" target="_blank">WATCH MORE</a>
-                    </div>
-                </div>
-
-
-            </section>
-            {{--End of videos section--}}
-
-            {{--djmix section--}}
-            <section class="container-fluid new-trending">
-                <div class="col-md-7 col-lg-7 col-sm-7 col-xs-7">
-                    <h3>Dj mix</h3>
-                    <p>{{config('app.name')}} presents you with the best non stop music prepared for you from the best Djs all over the world.<br/> Sit back and relax.</p>
-                    <div class="listendjmix-block">
-                        <a href="/djmix" target="_blank">Non stop Djmix</a>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 1000" preserveAspectRatio="none" class="triangle">
-                        <polygon points="0,0 0,1000 500,500" style="fill:white;stroke:white;stroke-width:1" />
-                    </svg>
-                </div>
-                <div class="col-md-5 col-lg-5 col-sm-5 col-xs-5">
-                    <div class="row">
-                        <div class="col-md-4 default-bg trending-img" style="background-image: url(images/Korede-Bello.jpg);"></div>
-                        <div class="col-md-4 default-bg trending-img" style="background-image: url(images/trending2.jpeg);"></div>
-                        <div class="col-md-4 default-bg trending-img" style="background-image: url(storage/images/davido.jpg);"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 default-bg trending-img" style="background-image: url(images/Korede-Bello.jpg);"></div>
-                        <div class="col-md-4 default-bg trending-img" style="background-image: url(images/trending2.jpeg);"></div>
-                        <div class="col-md-4 default-bg trending-img" style="background-image: url(storage/images/davido.jpg);"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 default-bg trending-img" style="background-image: url(images/Korede-Bello.jpg);"></div>
-                        <div class="col-md-4 default-bg trending-img" style="background-image: url(images/trending2.jpeg);"></div>
-                        <div class="col-md-4 default-bg trending-img" style="background-image: url(storage/images/davido.jpg);"></div>
-                    </div>
-                </div>
-            </section>
-            {{--end of djmix section--}}
-
             {{--Start of news section--}}
             <section class="container-fluid news-block default-bg">
                 <div class="custom-container">
@@ -290,31 +280,38 @@
             </section>
             {{--End of news section--}}
 
-            {{--start of events section--}}
-            <section class="container-fluid events-block">
-                <div class="custom-container">
-                    <h1 class="section-title">events</h1>
-                    <div class="event-bg default-bg">
-                        <h3>Afrika+ events</h3>
-                        <p>Be present at our mind blowing events, meet the best african DJs,<br/> dance the dance and feel the african music.</p>
-                        <div class="buy-merchandise-block">
-                            <a href="/events" target="_blank">More events</a>
-                        </div>
-                        <div class="more-events">
-                            <div class="more-events_item default-bg" style="background-image: url(/images/africa/djsnake.jpg)">
-                                <a href="javascript:" class="btn btn-sm btn-event">Learn more</a>
-                            </div>
-                            <div class="more-events_item default-bg" style="background-image: url(/images/africa/christmas.jpg)">
-                                <a href="javascript:" class="btn btn-sm btn-event">Learn more</a>
-                            </div>
-                            <div class="more-events_item default-bg" style="background-image: url(/images/africa/polyrap.jpg)">
-                                <a href="javascript:" class="btn btn-sm btn-event">Learn more</a>
-                            </div>
-                        </div>
+            {{--djmix section--}}
+            <section class="container-fluid new-trending">
+                <div class="col-md-7 col-lg-7 col-sm-7 col-xs-7">
+                    <h3>Dj mix</h3>
+                    <p>{{config('app.name')}} presents you with the best non stop music prepared for you from the best Djs all over the world.<br/> Sit back and relax.</p>
+                    <div class="listendjmix-block">
+                        <a href="/djmix" target="_blank">Non stop Djmix</a>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 1000" preserveAspectRatio="none" class="triangle">
+                        <polygon points="0,0 0,1000 500,500" style="fill:white;stroke:white;stroke-width:1" />
+                    </svg>
+                </div>
+                <div class="col-md-5 col-lg-5 col-sm-5 col-xs-5">
+                    <div class="row">
+                        <div class="col-md-4 default-bg trending-img" style="background-image: url(images/Korede-Bello.jpg);"></div>
+                        <div class="col-md-4 default-bg trending-img" style="background-image: url(images/trending2.jpeg);"></div>
+                        <div class="col-md-4 default-bg trending-img" style="background-image: url(storage/images/davido.jpg);"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 default-bg trending-img" style="background-image: url(images/Korede-Bello.jpg);"></div>
+                        <div class="col-md-4 default-bg trending-img" style="background-image: url(images/trending2.jpeg);"></div>
+                        <div class="col-md-4 default-bg trending-img" style="background-image: url(storage/images/davido.jpg);"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 default-bg trending-img" style="background-image: url(images/Korede-Bello.jpg);"></div>
+                        <div class="col-md-4 default-bg trending-img" style="background-image: url(images/trending2.jpeg);"></div>
+                        <div class="col-md-4 default-bg trending-img" style="background-image: url(storage/images/davido.jpg);"></div>
                     </div>
                 </div>
             </section>
-            {{--end of events section--}}
+            {{--end of djmix section--}}
 
             {{--start of shopping section--}}
             <section class="container-fluid shopping-block">

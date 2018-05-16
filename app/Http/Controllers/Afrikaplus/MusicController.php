@@ -106,6 +106,11 @@ class MusicController extends Controller
         //
     }
 
+    public function searchMusic(Request $request){
+        $music = Music::where('title', 'LIKE', '%'.$request->search_word.'%')->orWhere('artist', 'LIKE', '%'.$request->search_word.'%')->orWhere('music_path', 'LIKE', '%'.$request->search_word.'%')->get();
+
+        return view('music.index', compact('music'));
+    }
     /**
      * Remove the specified resource from storage.
      *

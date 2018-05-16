@@ -14,46 +14,31 @@
 @section('content')
     <div class="container login-reg-container">
         <h2>AFRIKA+</h2>
-        <div class="col-md-8 col-md-offset-2">
-            <div class="login-left">
-                <form class="form form-vertical" method="POST" action="{{ route('login') }}">
-                    {{ csrf_field() }}
-                    <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-                        <input class="form-control login-input" type="text" value="{{old('email')}}" name="email" placeholder="Email" required>
+        <div class="login-container">
+            <form class="form form-vertical" method="POST" action="{{ route('login') }}">
+                {{ csrf_field() }}
+                <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
+                    <input class="form-control login-input" type="text" value="{{old('email')}}" name="email" placeholder="Email" required>
 
-                        @if ($errors->has('email'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                        <input class="form-control login-input" type="password" name="password" placeholder="Password" required>
-                        @if ($errors->has('password'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('password') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                    <div class="form-group">
-                        <button class="form-control login-submit">Log in</button>
-                    </div>
-                </form>
-            </div>
-
-            <div class="login-middle">
-                <div class="form-divider"></div>
-            </div>
-
-            <div class="login-right">
-                <div class="form-group">
-                    <input class="form-control vk-btn" type="submit" value="Log in with VK">
+                    @if ($errors->has('email'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                    <input class="form-control login-input" type="password" name="password" placeholder="Password" required>
+                    @if ($errors->has('password'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                    @endif
                 </div>
                 <div class="form-group">
-                    <input class="form-control fb-btn" type="submit" value="Log in with FACEBOOK">
+                    <button class="form-control login-submit">Log in</button>
+                    <span>If you are a new user </span><a href="/register">register here</a>
                 </div>
-                <a href="/register">Click here to register</a>
-            </div>
+            </form>
         </div>
     </div>
     @include('general-playlist')

@@ -185,6 +185,10 @@
   top: -53px;
   font-size: 72pt;
 }
+.login-container {
+  width: 350px;
+  margin: auto;
+}
 .login-reg-container {
   margin-top: 100px;
   margin-bottom: 100px;
@@ -195,38 +199,8 @@
   color: rgba(255, 255, 255, 0.839);
   font-weight: bold;
   line-height: 1;
-  margin-bottom: 72pt;
+  margin-bottom: 30pt;
   text-align: center;
-}
-.login-reg-container .login-left {
-  width: 48%;
-  float: left;
-}
-.login-reg-container .login-middle {
-  width: 4%;
-  float: left;
-  height: 100px;
-}
-.login-reg-container .login-middle .form-divider {
-  background-color: #ffffff;
-  left: 50%;
-  opacity: 0.341;
-  position: absolute;
-  width: 2px;
-  height: 100%;
-  margin-left: -1px;
-}
-.login-reg-container .register-right {
-  position: relative;
-  height: 400px;
-  width: 48%;
-  float: left;
-  padding-top: 34px;
-}
-.login-reg-container .login-right {
-  width: 48%;
-  float: left;
-  padding-top: 34px;
 }
 .login-submit {
   border: 2px solid #0d0f13;
@@ -237,16 +211,6 @@
   height: 52px;
   font-size: 18px;
 }
-.social-media-register {
-  position: absolute;
-  width: 100%;
-  bottom: 0px;
-}
-.fb-btn {
-  background-color: #55acee;
-  height: 52px;
-  color: white;
-}
 .nonactivated_p {
   font-family: 'arial';
   font-size: 26px;
@@ -256,11 +220,6 @@
   font-size: 20px;
   background-color: black;
   border-color: black;
-}
-.vk-btn {
-  background-color: #3664a2;
-  height: 52px;
-  color: white;
 }
 .login-input {
   border: 2px solid #ffffff;
@@ -277,12 +236,25 @@
   margin-top: -9pt;
   border: .3px solid #686868 ! important;
 }
+.btn-search-music {
+  background-color: black;
+  border-color: black;
+  width: 20%;
+  float: left;
+  height: 32px;
+  color: white;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
 .music-search {
   border: 1px solid #68a3b0;
   background-color: #868686;
-  width: 100%;
+  width: 80%;
+  float: left;
   color: white;
-  height: 23px;
+  height: 30px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
   font-weight: bold;
 }
 hr {
@@ -439,31 +411,6 @@ hr {
   .login-reg-container h2 {
     font-size: 43pt;
   }
-  .login-reg-container .login-right {
-    width: 100%;
-    float: left;
-    height: 0px;
-  }
-  .login-reg-container .login-right a {
-    margin-bottom: 100px;
-    display: block;
-  }
-  .login-reg-container .register-right {
-    padding-top: 150px;
-    width: 100%;
-    float: left;
-    height: 0px;
-  }
-  .login-reg-container .register-right a {
-    margin-bottom: 100px;
-    display: block;
-  }
-  .login-reg-container .login-middle {
-    display: none;
-  }
-  .login-reg-container .login-left {
-    width: 100%;
-  }
   .music-wrapper {
     margin-left: 15px;
     margin-right: 15px;
@@ -491,7 +438,6 @@ hr {
   .music_page_title {
     line-height: 3;
     top: -54px;
-    display: block;
     text-align: center;
     font-size: 43pt;
     left: 0px;

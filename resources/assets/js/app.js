@@ -18,6 +18,8 @@ Vue.use(require('vue-resource'));
 
 import Cart from './components/Cart.vue';
 
+import Profile from './components/Profile.vue';
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -53,4 +55,16 @@ var shop = new Vue({
         }
     },
     components : {Cart}
+});
+
+var profile = new Vue({
+    el: '#app',
+    data(){
+        return {
+        }
+    },
+
+    methods: {
+    },
+    components : {Profile}
 });

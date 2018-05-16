@@ -60,11 +60,20 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'phone' => 'required|string|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
+    }
+
+    protected function addRandomSrting($length){
+        return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+    }
+
+    protected function getUsername($username){
+        return is_null(User::where('username', '=', $username)->first()) ? $username : $username.$this->addRandomSrting(3);
     }
 
     /**
@@ -75,8 +84,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $username = $this->getUsername(str_replace(['-', ' '], '', $data['firstname'].$data['lastname']));
+
         return User::create([
-            'name' => $data['name'],
+            'firstname' => $data['firstname'],
+            'lastname' => $data['lastname'],
+            'username' => strtolower($username),
             'email' => $data['email'],
             'phone' => $data['phone'],
             'password' => bcrypt($data['password']),

@@ -18,7 +18,7 @@ class CreateCommentsTable extends Migration
                 $table->increments('id');
                 $table->text('comment');
                 $table->integer('user_id');
-                $table->integer('video_id')->unsigned();
+                $table->enum('type', ['video', 'events', 'posts', 'music']);
                 $table->timestamps();
                 $table->engine = 'InnoDB';
             });

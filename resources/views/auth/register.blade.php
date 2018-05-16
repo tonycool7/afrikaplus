@@ -14,41 +14,49 @@
 @section('content')
     <div class="container login-reg-container">
         <h2>AFRIKA+</h2>
-        <div class="col-md-8 col-md-offset-2">
-            <div class="login-left">
+        <div class="row">
+            <div class="login-container">
                 <form class="form form-vertical" method="POST" action="{{ route('register') }}">
                     {{ csrf_field() }}
-                    <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
-                        <input class="form-control login-input" value="{{old('name')}}" type="text" name="name" placeholder="Full name" required>
+                    <div class="form-group {{ $errors->has('firstname') ? ' has-error' : '' }}">
+                        <input class="form-control login-input" value="{{old('firstname')}}" type="text" name="firstname" placeholder="Firstname" required>
 
-                        @if ($errors->has('name'))
+                        @if ($errors->has('firstname'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('name') }}</strong>
-                            </span>
+                            <strong>{{ $errors->first('firstname') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                    <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
+                        <input class="form-control login-input" type="text" value="{{old('lastname')}}" name="lastname" placeholder="Lastname" required>
+                        @if ($errors->has('lastname'))
+                            <span class="help-block">
+                            <strong>{{ $errors->first('lastname') }}</strong>
+                        </span>
                         @endif
                     </div>
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                         <input class="form-control login-input" type="email" value="{{old('email')}}" name="email" placeholder="Email" required>
                         @if ($errors->has('email'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </span>
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
                         @endif
                     </div>
                     <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                         <input class="form-control login-input" type="tel" value="{{old('phone')}}" name="phone" placeholder="Telephone" required>
                         @if ($errors->has('phone'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('phone') }}</strong>
-                            </span>
+                            <strong>{{ $errors->first('phone') }}</strong>
+                        </span>
                         @endif
                     </div>
                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                         <input class="form-control login-input" type="password" name="password" placeholder="********" required>
                         @if ($errors->has('password'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('password') }}</strong>
-                            </span>
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
                         @endif
                     </div>
                     <div class="form-group">
@@ -58,21 +66,6 @@
                         <button class="form-control login-submit">Register</button>
                     </div>
                 </form>
-            </div>
-
-            <div class="login-middle">
-                <div class="form-divider"></div>
-            </div>
-
-            <div class="register-right">
-                <div class="social-media-register">
-                    <div class="form-group">
-                        <input class="form-control vk-btn" type="submit" value="Log in with VK">
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control fb-btn" type="submit" value="Log in with FACEBOOK">
-                    </div>
-                </div>
             </div>
         </div>
     </div>

@@ -15,8 +15,12 @@
         <span class="music_page_title">hot tracks</span>
     </div>
     <hr class="music-hr-top" style="margin-top: -106px;"/>
-    <div class="music-wrapper">
-        <input class="music-search form-control" type="text" autofocus placeholder="Search music">
+    <div class="music-wrapper row">
+        <form class="form" method="post" action="/music_search">
+            {{ csrf_field() }}
+            <input class="music-search form-control" type="text" name="search_word" autofocus placeholder="Search music">
+            <input class="btn btn-search-music" value="Search" type="submit">
+        </form>
     </div>
     <ul class="music-page-container all-songs">
         <hr class="music-hr-bottom" />

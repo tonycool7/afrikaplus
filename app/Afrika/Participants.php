@@ -5,20 +5,22 @@ namespace App\Afrika;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
-class Comments extends Model
+class Participants extends Model
 {
     protected $primaryKey = 'id';
 
-    protected $table = 'comments';
+    protected $table = 'participants';
 
     protected $fillable = [
-        'comment',
         'user_id',
-        'video_id',
-        'post_id'
+        'conversation_id'
     ];
 
-    public function user(){
+    public function conversation(){
+        return $this->belongsTo(Conversation::class);
+    }
+
+    public function participant(){
         return $this->belongsTo(User::class);
     }
 }

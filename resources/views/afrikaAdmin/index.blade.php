@@ -12,7 +12,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Album panel</div>
             <div class="panel-body">
-                <form enctype="multipart/form-data" class="form form-vertical" action="/afrika/admin/album" method="post">
+                <form enctype="multipart/form-data" class="form form-vertical" action="/album" method="post">
                     {{ csrf_field() }}
                     <legend>Album</legend>
                     {{--<p>{{ msg }}</p>--}}

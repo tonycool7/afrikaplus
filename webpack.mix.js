@@ -14,6 +14,7 @@ let mix = require('laravel-mix');
 mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/app.scss', 'public/css')
     .less('resources/assets/less/custom.less', 'public/css')
+    .less('resources/assets/less/profile.less', 'public/css')
     .less('resources/assets/less/player/player2.less', 'public/css')
     .less('resources/assets/less/player/player.less', 'public/css')
     .less('resources/assets/less/shop/shop.less', 'public/css')

@@ -50,14 +50,15 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if($exception instanceof UserNotVerifiedException){
-            if($request->getRequestUri() == "/shop/account"){
+        if($exception instanceof UserNotVerifiedException) {
+            if ($request->getRequestUri() == "/shop/account") {
                 return redirect('/shop/nonactivated');
             }
             return redirect('/nonactivated');
-        }elseif(!$exception instanceof AuthenticationException){
-            return view('error.error');
         }
+//        }elseif(!$exception instanceof AuthenticationException){
+//            return view('error.error');
+//        }
 
 
         return parent::render($request, $exception);
