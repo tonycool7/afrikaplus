@@ -7,7 +7,7 @@
     <div class="audio-head">
         <ul class="main-controls">
             <li class="album-prev"><i class="fa fa-step-backward fa-3x"></i></li>
-            <li class="album-play"><i class="fa fa-play fa-3x"></i></li>
+            <li class="album-play"><i class="fa fa-play-circle fa-3x"></i></li>
             <li class="album-next"><i class="fa fa-step-forward fa-3x"></i></li>
             <li class="album-list"><i class="fa fa-list fa-3x"></i></li>
             <li class="album-img__container">

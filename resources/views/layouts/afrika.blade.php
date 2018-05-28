@@ -49,7 +49,7 @@
     <link href="/images/footer-img.png" rel="icon" type="image/png">
 </head>
 <body>
-<div id="welcome">
+<div id="app">
     {{--Page header--}}
     <header>
         <nav class="navbar navbar-black navbar-fixed-top" role="navigation">

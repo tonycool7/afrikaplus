@@ -1730,6 +1730,132 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Playlist.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            non_user: this.user.authUser == null ? true : false,
+            authorized: !this.user.authorized,
+            canEdit: this.user.authorized,
+            user_id: this.user.userDetails.id,
+            logout: false,
+            search: '',
+            authUser: this.user.authUser,
+            userData: this.user.userDetails,
+            authavatar: this.user.authUser != null ? this.user.authUser.image : "",
+            avatar: this.user.userDetails.image,
+            avatarLoader: false
+        };
+    },
+
+    props: ['csrf', 'user', 'playlist'],
+    mounted: function mounted() {
+        console.log('Component mounted.');
+    },
+
+    created: function created() {
+        console.log('');
+    },
+    methods: {
+        fetchUserData: function fetchUserData() {
+            var _this = this;
+
+            axios.get('/fetch_user/' + this.user.userDetails.username).then(function (res) {
+                _this.posts = res.data.user.posts;
+                _this.avatar = res.data.user.userDetails.image;
+            }).catch(function (err) {
+                return console.error(err);
+            });
+        },
+        clickAvatar: function clickAvatar() {
+            $('#avatar').click();
+        },
+        toggleLogout: function toggleLogout() {
+            this.logout = !this.logout;
+        },
+        uploadAvatar: function uploadAvatar() {
+            var _this2 = this;
+
+            this.avatarLoader = true;
+            var formData = new FormData();
+            formData.append('avatar', document.getElementById('avatar').files[0]);
+            formData.append('_token', this.csrf);
+            formData.append('user_id', this.user_id);
+            axios.post('/avatar', formData).then(function (res) {
+                _this2.fetchUserData();
+                _this2.avatarLoader = false;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Profile.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1923,19 +2049,69 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            non_user: this.user.authUser == null ? true : false,
             authorized: !this.user.authorized,
             canEdit: this.user.authorized,
             user_id: this.user.userDetails.id,
             search: '',
+            authUser: this.user.authUser,
             text: "",
+            comment: "",
+            logout: false,
+            comments: [],
+            commentsTotal: '',
+            likesTotal: '',
             viewPostData: [],
             userData: this.user.userDetails,
             posts: this.user.posts,
-            avatar: this.user.userDetails.image
+            authavatar: this.user.authUser != null ? this.user.authUser.image : "",
+            avatar: this.user.userDetails.image,
+            avatarLoader: false,
+            postsLoader: false
         };
     },
 
@@ -1961,34 +2137,96 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         addPost: function addPost() {
             var _this2 = this;
 
+            this.postsLoader = true;
+            $('#add-post').modal('hide');
             var formData = new FormData();
             formData.append('image', document.getElementById('image').files[0]);
             formData.append('text', this.text);
             formData.append('user_id', this.user_id);
             formData.append('_token', this.csrf);
             axios.post('/posts', formData).then(function (res) {
-                $('#add-post').modal('hide');
                 _this2.fetchUserData();
+                _this2.postsLoader = false;
             }).catch(function (error) {
                 console.log(error);
             });
         },
         viewPost: function viewPost(post) {
             this.viewPostData = post;
+            this.fetchLikes(post.id);
+            this.fetchComments(post.id);
             $('#view-post').modal('show');
+        },
+        likePost: function likePost(post_id) {
+            var _this3 = this;
+
+            if (this.authUser != null) {
+                var formData = new FormData();
+                formData.append('post_id', post_id);
+                formData.append('user_id', this.user_id);
+                formData.append('_token', this.csrf);
+                axios.post('/likes', formData).then(function (res) {
+                    _this3.likesTotal = res.data.likes;
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+        },
+        fetchLikes: function fetchLikes(post_id) {
+            var _this4 = this;
+
+            axios.get('/likes/' + post_id).then(function (res) {
+                _this4.likesTotal = res.data.total;
+            }).catch(function (err) {
+                return console.error(err);
+            });
+        },
+        fetchComments: function fetchComments(id) {
+            var _this5 = this;
+
+            axios.get('/posts/' + id).then(function (res) {
+                _this5.comments = res.data.comments;
+                _this5.commentsTotal = _this5.comments.length;
+            }).catch(function (err) {
+                return console.error(err);
+            });
+        },
+        addComment: function addComment() {
+            var _this6 = this;
+
+            if (this.authUser != null) {
+                var formData = new FormData();
+                formData.append('comment', this.comment);
+                formData.append('user_id', this.authUser.id);
+                formData.append('post_id', this.viewPostData.id);
+                formData.append('_token', this.csrf);
+                axios.post('/comments', formData).then(function (res) {
+                    _this6.fetchComments(_this6.viewPostData.id);
+                    _this6.comment = "";
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            } else {
+                alert("Only registered users can comment on posts, pls register");
+            }
+        },
+        toggleLogout: function toggleLogout() {
+            this.logout = !this.logout;
         },
         clickAvatar: function clickAvatar() {
             $('#avatar').click();
         },
         uploadAvatar: function uploadAvatar() {
-            var _this3 = this;
+            var _this7 = this;
 
+            this.avatarLoader = true;
             var formData = new FormData();
             formData.append('avatar', document.getElementById('avatar').files[0]);
             formData.append('_token', this.csrf);
             formData.append('user_id', this.user_id);
             axios.post('/avatar', formData).then(function (res) {
-                _this3.fetchUserData();
+                _this7.fetchUserData();
+                _this7.avatarLoader = false;
             }).catch(function (error) {
                 console.log(error);
             });
@@ -35731,6 +35969,257 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-173d6f49\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Playlist.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("nav", { staticClass: "navbar navbar-inverse" }, [
+      _c("div", { staticClass: "profile-container" }, [
+        _c("div", { staticClass: "row" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "collapse navbar-collapse col-sm-10",
+              attrs: { id: "myNavbar" }
+            },
+            [
+              _c("div", { staticClass: "row" }, [
+                _c("ul", { staticClass: "nav navbar-nav" }, [
+                  _c("li", [
+                    _c("form", { staticClass: "form search-form" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.search,
+                            expression: "search"
+                          }
+                        ],
+                        attrs: { type: "text", placeholder: "Find friends" },
+                        domProps: { value: _vm.search },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.search = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(1)
+                ]),
+                _vm._v(" "),
+                _c("ul", { staticClass: "nav navbar-nav navbar-right" }, [
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [
+                      _vm._v(
+                        _vm._s(
+                          _vm.authUser != null ? _vm.authUser.firstname : ""
+                        )
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm.non_user
+                    ? _c("li", [
+                        _c("a", { attrs: { href: "/login" } }, [
+                          _vm._v("Login")
+                        ])
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.non_user
+                    ? _c("li", [
+                        _vm.non_user
+                          ? _c("a", { attrs: { href: "/register" } }, [
+                              _vm._v("Register")
+                            ])
+                          : _vm._e()
+                      ])
+                    : _c("li", [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "profile-pik-container dropdown",
+                            attrs: { href: "#" }
+                          },
+                          [
+                            _c(
+                              "span",
+                              {
+                                staticClass: "default-bg profile-pik",
+                                style: {
+                                  "background-image":
+                                    "url(/storage/avatar/" +
+                                    _vm.authavatar +
+                                    ")"
+                                },
+                                attrs: { alt: "avatar" },
+                                on: {
+                                  click: function($event) {
+                                    _vm.toggleLogout()
+                                  }
+                                }
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "fa fa-caret-down profile-caret"
+                                }),
+                                _vm._v(" "),
+                                _vm.logout
+                                  ? _c(
+                                      "div",
+                                      { staticClass: "profile-setting" },
+                                      [
+                                        _c(
+                                          "form",
+                                          {
+                                            staticClass: "logout-form",
+                                            attrs: {
+                                              action: "/logout",
+                                              method: "post"
+                                            }
+                                          },
+                                          [
+                                            _c("input", {
+                                              attrs: {
+                                                type: "hidden",
+                                                name: "_token"
+                                              },
+                                              domProps: { value: _vm.csrf }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("input", {
+                                              staticClass:
+                                                "btn btn-block btn-default",
+                                              attrs: {
+                                                type: "submit",
+                                                value: "logout"
+                                              }
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "form",
+                                          {
+                                            staticClass: "logout-form",
+                                            attrs: {
+                                              action: "/user",
+                                              method: "post"
+                                            }
+                                          },
+                                          [
+                                            _c("input", {
+                                              attrs: {
+                                                type: "hidden",
+                                                name: "_token"
+                                              },
+                                              domProps: { value: _vm.csrf }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("input", {
+                                              attrs: {
+                                                type: "hidden",
+                                                name: "_method",
+                                                value: "delete"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("input", {
+                                              staticClass:
+                                                "btn btn-block btn-default",
+                                              attrs: {
+                                                type: "submit",
+                                                value: "Delete Profile"
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e()
+                              ]
+                            )
+                          ]
+                        )
+                      ])
+                ])
+              ])
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "navbar-header col-sm-2" }, [
+      _c(
+        "button",
+        {
+          staticClass: "navbar-toggle",
+          attrs: {
+            type: "button",
+            "data-toggle": "collapse",
+            "data-target": "#myNavbar"
+          }
+        },
+        [
+          _c("span", { staticClass: "icon-bar" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "icon-bar" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "icon-bar" })
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "navbar-brand",
+          attrs: { href: "/", title: "Go to Afrika+ welcome page" }
+        },
+        [_c("img", { attrs: { src: "/images/footer-img.png" } })]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa fa-bell" })
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-173d6f49", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-22ef5402\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Profile.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -35764,7 +36253,7 @@ var render = function() {
                             expression: "search"
                           }
                         ],
-                        attrs: { type: "text" },
+                        attrs: { type: "text", placeholder: "Find friends" },
                         domProps: { value: _vm.search },
                         on: {
                           input: function($event) {
@@ -35782,35 +36271,140 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("ul", { staticClass: "nav navbar-nav navbar-right" }, [
-                  _vm._m(2),
-                  _vm._v(" "),
                   _c("li", [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "profile-pik-container",
-                        attrs: { href: "#" }
-                      },
-                      [
+                    _c("a", { attrs: { href: "#" } }, [
+                      _vm._v(
+                        _vm._s(
+                          _vm.authUser != null ? _vm.authUser.firstname : ""
+                        )
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm.non_user
+                    ? _c("li", [
+                        _c("a", { attrs: { href: "/login" } }, [
+                          _vm._v("Login")
+                        ])
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.non_user
+                    ? _c("li", [
+                        _vm.non_user
+                          ? _c("a", { attrs: { href: "/register" } }, [
+                              _vm._v("Register")
+                            ])
+                          : _vm._e()
+                      ])
+                    : _c("li", [
                         _c(
-                          "span",
+                          "a",
                           {
-                            staticClass: "default-bg profile-pik",
-                            style: {
-                              "background-image":
-                                "url(/storage/avatar/" + _vm.avatar + ")"
-                            },
-                            attrs: { alt: "avatar" }
+                            staticClass: "profile-pik-container dropdown",
+                            attrs: { href: "#" }
                           },
                           [
-                            _c("i", {
-                              staticClass: "fa fa-caret-down profile-caret"
-                            })
+                            _c(
+                              "span",
+                              {
+                                staticClass: "default-bg profile-pik",
+                                style: {
+                                  "background-image":
+                                    "url(/storage/avatar/" +
+                                    _vm.authavatar +
+                                    ")"
+                                },
+                                attrs: { alt: "avatar" },
+                                on: {
+                                  click: function($event) {
+                                    _vm.toggleLogout()
+                                  }
+                                }
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "fa fa-caret-down profile-caret"
+                                }),
+                                _vm._v(" "),
+                                _vm.logout
+                                  ? _c(
+                                      "div",
+                                      { staticClass: "profile-setting" },
+                                      [
+                                        _c(
+                                          "form",
+                                          {
+                                            staticClass: "logout-form",
+                                            attrs: {
+                                              action: "/logout",
+                                              method: "post"
+                                            }
+                                          },
+                                          [
+                                            _c("input", {
+                                              attrs: {
+                                                type: "hidden",
+                                                name: "_token"
+                                              },
+                                              domProps: { value: _vm.csrf }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("input", {
+                                              staticClass:
+                                                "btn btn-block btn-default",
+                                              attrs: {
+                                                type: "submit",
+                                                value: "logout"
+                                              }
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "form",
+                                          {
+                                            staticClass: "logout-form",
+                                            attrs: {
+                                              action: "/user",
+                                              method: "post"
+                                            }
+                                          },
+                                          [
+                                            _c("input", {
+                                              attrs: {
+                                                type: "hidden",
+                                                name: "_token"
+                                              },
+                                              domProps: { value: _vm.csrf }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("input", {
+                                              attrs: {
+                                                type: "hidden",
+                                                name: "_method",
+                                                value: "delete"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("input", {
+                                              staticClass:
+                                                "btn btn-block btn-default",
+                                              attrs: {
+                                                type: "submit",
+                                                value: "Delete Profile"
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e()
+                              ]
+                            )
                           ]
                         )
-                      ]
-                    )
-                  ])
+                      ])
                 ])
               ])
             ]
@@ -35821,7 +36415,7 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "profile-container" }, [
       _c("div", { staticClass: "row" }, [
-        _vm._m(3),
+        _vm._m(2),
         _vm._v(" "),
         _c("div", { staticClass: "col-sm-10" }, [
           _c("div", { staticClass: "row" }, [
@@ -35837,6 +36431,17 @@ var render = function() {
                     }
                   },
                   [
+                    _vm.avatarLoader
+                      ? _c("img", {
+                          staticClass: "loader",
+                          attrs: {
+                            src: "/images/loader.gif",
+                            height: "80px",
+                            width: "auto"
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
                     _c("form", { attrs: { method: "post" } }, [
                       _c("input", {
                         staticClass: "form-control",
@@ -35882,14 +36487,24 @@ var render = function() {
                         "span",
                         {
                           staticClass: "btn btn-custom btn-follow",
-                          attrs: { title: "Follow Anthony Femi - Oke" }
+                          attrs: { title: "" }
                         },
                         [_vm._v("Follow")]
                       )
-                    : _vm._e()
+                    : _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-default",
+                          attrs: { href: "/profile/edit", title: "" }
+                        },
+                        [
+                          _vm._v("Edit "),
+                          _c("i", { staticClass: "fa fa-support" })
+                        ]
+                      )
                 ]),
                 _vm._v(" "),
-                _vm._m(4),
+                _vm._m(3),
                 _vm._v(" "),
                 _c("p", [
                   _c("strong", [
@@ -35937,6 +36552,18 @@ var render = function() {
                   : _vm._e()
               ]),
               _vm._v(" "),
+              _vm.postsLoader
+                ? _c("img", {
+                    staticClass: "loader",
+                    attrs: {
+                      src: "/images/loader.gif",
+                      title: "Just a momment",
+                      height: "100px",
+                      width: "auto"
+                    }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
               _vm._l(_vm.posts, function(post) {
                 return _c("div", { staticClass: "col-sm-4" }, [
                   _c(
@@ -35955,7 +36582,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._m(5, true)]
+                    [_vm._m(4, true)]
                   )
                 ])
               })
@@ -35972,7 +36599,7 @@ var render = function() {
       [
         _c("div", { staticClass: "modal-dialog" }, [
           _c("div", { staticClass: "modal-content" }, [
-            _vm._m(6),
+            _vm._m(5),
             _vm._v(" "),
             _c("div", { staticClass: "modal-body" }, [
               _c(
@@ -36012,7 +36639,8 @@ var render = function() {
                         attrs: {
                           type: "text",
                           id: "text",
-                          PLACEHOLDER: "Say Something.."
+                          PLACEHOLDER: "Say Something..",
+                          required: ""
                         },
                         domProps: { value: _vm.text },
                         on: {
@@ -36027,14 +36655,14 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(7),
+                  _vm._m(6),
                   _vm._v(" "),
-                  _vm._m(8)
+                  _vm._m(7)
                 ]
               )
             ]),
             _vm._v(" "),
-            _vm._m(9)
+            _vm._m(8)
           ])
         ])
       ]
@@ -36046,7 +36674,7 @@ var render = function() {
       [
         _c("div", { staticClass: "modal-dialog view-post-dialog" }, [
           _c("div", { staticClass: "modal-content" }, [
-            _vm._m(10),
+            _vm._m(9),
             _vm._v(" "),
             _c("div", { staticClass: "modal-body" }, [
               _c("div", { staticClass: "row" }, [
@@ -36057,19 +36685,108 @@ var render = function() {
                       "background-image":
                         "url(/storage/posts/" + _vm.viewPostData.image + ")"
                     }
-                  })
+                  }),
+                  _vm._v(" "),
+                  _c("i", {
+                    staticClass: "fa fa-heart fa-post",
+                    on: {
+                      click: function($event) {
+                        _vm.likePost(_vm.viewPostData.id)
+                      }
+                    }
+                  }),
+                  _vm._v(
+                    " " +
+                      _vm._s(this.likesTotal) +
+                      "\n                            "
+                  ),
+                  _c("i", { staticClass: "fa fa-comment fa-post" }),
+                  _vm._v(
+                    _vm._s(_vm.commentsTotal) + "\n                            "
+                  ),
+                  _c(
+                    "form",
+                    {
+                      staticClass: "form form-horizontal",
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          _vm.addComment()
+                        }
+                      }
+                    },
+                    [
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.comment,
+                            expression: "comment"
+                          }
+                        ],
+                        staticClass: "form-control post-comment",
+                        attrs: {
+                          autocomplete: "off",
+                          autocorrect: "off",
+                          placeholder: "Add Comment..."
+                        },
+                        domProps: { value: _vm.comment },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.comment = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "btn btn-black",
+                        attrs: { type: "submit" }
+                      })
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-sm-5" }, [
                   _c("p", [
                     _c("strong", [_vm._v(_vm._s(_vm.userData.username))]),
                     _vm._v(" " + _vm._s(_vm.viewPostData.text))
-                  ])
+                  ]),
+                  _vm._v(" "),
+                  _c("h4", { staticClass: "comment-heading" }, [
+                    _vm._v("Comments")
+                  ]),
+                  _vm._v(" "),
+                  _c("hr", { staticClass: "comment-hr" }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "comments-container" },
+                    _vm._l(_vm.comments, function(comment) {
+                      return _c("p", [
+                        _c("strong", [_vm._v(_vm._s(comment.username))]),
+                        _vm._v(
+                          " " +
+                            _vm._s(comment.comment) +
+                            "\n                                "
+                        )
+                      ])
+                    })
+                  ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("br")
                 ])
               ])
             ]),
             _vm._v(" "),
-            _vm._m(11)
+            _vm._m(10)
           ])
         ])
       ]
@@ -36101,9 +36818,14 @@ var staticRenderFns = [
         ]
       ),
       _vm._v(" "),
-      _c("a", { staticClass: "navbar-brand", attrs: { href: "/" } }, [
-        _c("img", { attrs: { src: "/images/footer-img.png" } })
-      ])
+      _c(
+        "a",
+        {
+          staticClass: "navbar-brand",
+          attrs: { href: "/", title: "Go to Afrika+ welcome page" }
+        },
+        [_c("img", { attrs: { src: "/images/footer-img.png" } })]
+      )
     ])
   },
   function() {
@@ -36120,19 +36842,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Anthony")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-2" }, [
       _c("ul", { staticClass: "left-side-menu" }, [
         _c("li", [
-          _c("a", { attrs: { href: "/profile" } }, [
-            _c("i", { staticClass: "fa fa-home" }),
-            _vm._v(" Home")
-          ])
+          _c(
+            "a",
+            { attrs: { href: "/profile", title: "Go to Profile Page" } },
+            [_c("i", { staticClass: "fa fa-home" }), _vm._v(" Home")]
+          )
         ]),
         _vm._v(" "),
         _c("li", [
@@ -36178,7 +36895,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { attrs: { href: "#" } }, [
+          _c("a", { attrs: { href: "/playlist" } }, [
             _c("i", { staticClass: "fa fa-music" }),
             _vm._v(" Music")
           ])
@@ -36197,26 +36914,32 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "stats-list" }, [
-      _c("li", [
-        _c("span", [_vm._v("100k")]),
-        _vm._v(" "),
-        _c("span", [_vm._v("posts")])
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c("a", { attrs: { href: "/followers" } }, [
-          _c("span", [_vm._v("12")]),
+    return _c("ul", { staticClass: "stats-list row" }, [
+      _c("li", { staticClass: "col-4" }, [
+        _c("div", [
+          _c("span", [_vm._v("100k")]),
           _vm._v(" "),
-          _c("span", [_vm._v("followers")])
+          _c("span", [_vm._v("posts")])
         ])
       ]),
       _vm._v(" "),
-      _c("li", [
-        _c("a", { attrs: { href: "/following" } }, [
-          _c("span", [_vm._v("12")]),
-          _vm._v(" "),
-          _c("span", [_vm._v("following")])
+      _c("li", { staticClass: "col-4" }, [
+        _c("div", [
+          _c("a", { attrs: { href: "/followers" } }, [
+            _c("span", [_vm._v("12")]),
+            _vm._v(" "),
+            _c("span", [_vm._v("followers")])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "col-4" }, [
+        _c("div", [
+          _c("a", { attrs: { href: "/following" } }, [
+            _c("span", [_vm._v("12")]),
+            _vm._v(" "),
+            _c("span", [_vm._v("following")])
+          ])
         ])
       ])
     ])
@@ -48953,6 +49676,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Cart_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Cart_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Profile_vue__ = __webpack_require__("./resources/assets/js/components/Profile.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Profile_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Profile_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Playlist_vue__ = __webpack_require__("./resources/assets/js/components/Playlist.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Playlist_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Playlist_vue__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -48970,6 +49695,8 @@ window.Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 var Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
 Vue.use(__webpack_require__("./node_modules/vue-resource/dist/vue-resource.esm.js"));
+
+
 
 
 
@@ -49022,8 +49749,20 @@ var profile = new Vue({
     },
 
 
-    methods: {},
-    components: { Profile: __WEBPACK_IMPORTED_MODULE_1__components_Profile_vue___default.a }
+    methods: {
+        addMusic: function addMusic(music_id) {
+            var formdata = new FormData();
+
+            formdata.append('music_id', music_id);
+
+            axios.post('/playlist', formdata).then(function (response) {
+                alert(response.data.result);
+            }).catch(function (e) {
+                alert(e);
+            });
+        }
+    },
+    components: { Profile: __WEBPACK_IMPORTED_MODULE_1__components_Profile_vue___default.a, Playlist: __WEBPACK_IMPORTED_MODULE_2__components_Playlist_vue___default.a }
 });
 
 /***/ }),
@@ -49124,6 +49863,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-4b324dd2", Component.options)
   } else {
     hotAPI.reload("data-v-4b324dd2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/Playlist.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Playlist.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-173d6f49\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Playlist.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Playlist.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-173d6f49", Component.options)
+  } else {
+    hotAPI.reload("data-v-173d6f49", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -49253,6 +50040,13 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/less/playlist.less":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/assets/less/profile.less":
 /***/ (function(module, exports) {
 
@@ -49292,6 +50086,7 @@ __webpack_require__("./resources/assets/less/player/player2.less");
 __webpack_require__("./resources/assets/less/player/player.less");
 __webpack_require__("./resources/assets/less/shop/shop.less");
 __webpack_require__("./resources/assets/less/album.less");
+__webpack_require__("./resources/assets/less/playlist.less");
 __webpack_require__("./resources/assets/less/events.less");
 __webpack_require__("./resources/assets/less/news.less");
 __webpack_require__("./resources/assets/less/movies.less");

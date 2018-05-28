@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Afrikaplus;
 
-use App\Afrika\Posts;
+use App\Afrika\UserPlaylist;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class PostsController extends Controller
+class PlaylistController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,18 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        $authUser = \Auth::user();
+        $authorized = ($authUser != null) ? true : false;
+
+        $playlist = ($authUser != null && $authUser->playlist->where('title', 'default')->first() != null) ? $authUser->playlist->where('title', 'default')->first()->music : [];
+
+        $user = [
+            'authUser' => $authUser ?? null,
+            'authorized' => $authorized,
+            'userDetails' => ($authUser) ? $authUser->toArray() : ""
+        ];
+
+        return view('playlist.show', compact('user', 'playlist'));
     }
 
     /**
@@ -37,31 +48,23 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        $postData = $request->all();
-
-        if($request->hasFile('image')){
-            $image = $request->file('image')->getClientOriginalName();
-            $postData['image'] = $image;
-            $request->image->storeAs('posts', $image);
-        }else{
-            return response()->json([
-               'result' => 'Image unable to upload'
-            ]);
+        if(\Auth::user() == null){
+            return response()->json(
+                [
+                    'result' => "You have to login to add music"
+                ]
+            );
         }
-
-        Posts::create($postData);
-
-        return response()->json([
-            'result' => 'Image uploaded'
+        UserPlaylist::create([
+            'music_id' => $request->music_id,
+            'playlist_id' => \Auth::user()->playlist->where('title', 'default')->first()->id
         ]);
-    }
 
-    public function fetchCommentOwner($comments){
-        $result = [];
-        foreach ($comments as $item){
-            array_push($result, array_merge(User::find($item->user_id)->toArray(),$item->toArray()));
-        }
-        return $result;
+        return response()->json(
+            [
+                'result' => "Music added to default playlist"
+            ]
+        );
     }
 
     /**
@@ -72,15 +75,7 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $post = Posts::findOrFail($id);
-
-        return response()->json(
-            [
-                'post' => $post,
-                'likes' => count($post->likes),
-                'comments' => $this->fetchCommentOwner($post->comments)
-            ]
-        );
+        //
     }
 
     /**

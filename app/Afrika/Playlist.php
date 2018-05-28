@@ -16,6 +16,6 @@ class Playlist extends Model
     ];
 
     public function music(){
-        $this->hasMany(UserPlaylist::class);
+        return $this->hasMany(UserPlaylist::class);
     }
 }

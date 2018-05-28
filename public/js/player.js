@@ -70,7 +70,7 @@ player.prototype = {
 
     setAndReloadPlayer: function setAndReloadPlayer(args) {
         this.audiosource.src = "/storage/music/" + args.music;
-        this.title.text(args.music.split('.')[0]);
+        console.log(args.music);
         this.playerImage.css('background-image', 'url(/storage/images/'+args.image+')');
         this.player_title.text(args.title);
         this.player_artist.text(args.artist);
@@ -182,12 +182,12 @@ player.prototype = {
     setPauseIcon: function setPauseIcon() {
         var play = this.playBtn.find('i');
         play.removeClass('fa-pause');
-        play.addClass('fa-play');
+        play.addClass('fa-play-circle');
     },
 
     setPlayIcon: function setPlayIcon() {
         var play = this.playBtn.find('i');
-        play.removeClass('fa-play');
+        play.removeClass('fa-play-circle');
         play.addClass('fa-pause');
     },
 

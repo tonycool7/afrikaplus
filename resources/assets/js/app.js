@@ -20,6 +20,8 @@ import Cart from './components/Cart.vue';
 
 import Profile from './components/Profile.vue';
 
+import Playlist from './components/Playlist.vue';
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -65,6 +67,17 @@ var profile = new Vue({
     },
 
     methods: {
+        addMusic(music_id){
+            var formdata = new FormData();
+
+            formdata.append('music_id', music_id);
+
+            axios.post('/playlist', formdata).then(response => {
+                alert(response.data.result);
+            }).catch(e => {
+                alert(e);
+            });
+        }
     },
-    components : {Profile}
+    components : {Profile, Playlist}
 });

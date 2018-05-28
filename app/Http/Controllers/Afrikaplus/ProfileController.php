@@ -11,8 +11,8 @@ class ProfileController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('isVerified');
+        $this->middleware('auth', ['except' => ['show']]);
+        $this->middleware('isVerified', ['except' => ['show']]);
     }
 
     /**
@@ -55,10 +55,12 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
+        $authUser = \Auth::user();
         $userObj = \App\User::where('username', $id)->first();
         $authorized = ($userObj->id == \Auth::id()) ? true : false;
 
         $user = [
+            'authUser' => $authUser ?? null,
             'authorized' => $authorized,
             'userDetails' => $userObj->toArray(),
             'posts' => $userObj->posts->toArray()

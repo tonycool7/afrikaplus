@@ -55,10 +55,9 @@ class Handler extends ExceptionHandler
                 return redirect('/shop/nonactivated');
             }
             return redirect('/nonactivated');
+        }elseif($exception->getMessage() != "The given data was invalid."){
+            return view('error.error');
         }
-//        }elseif(!$exception instanceof AuthenticationException){
-//            return view('error.error');
-//        }
 
 
         return parent::render($request, $exception);

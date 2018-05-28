@@ -42,7 +42,6 @@
     <title>@yield('title')</title>
     <!-- Fonts -->
     <link href="{{mix('/css/app.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{mix('/css/profile.css')}}" rel="stylesheet" type="text/css"/>
     {{--<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">--}}
     @yield('styling')
     <link href="/images/footer-img.png" rel="icon" type="image/png">

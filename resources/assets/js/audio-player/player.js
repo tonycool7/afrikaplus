@@ -62,6 +62,7 @@ player.prototype = {
         var play = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
         this.audiosource.src = "storage/music/" + music;
+        console.log(music);
         this.title.text(music.split('.')[0]);
         this.audioElement.load();
         if (play) this.play();

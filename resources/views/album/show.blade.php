@@ -28,8 +28,12 @@
                     <th></th>
                 </thead>
                 <tbody class="album-playlist" data-thumbnail="{{$album->image_path}}">
+                @php
+                    $image = $album->image_path;
+                @endphp
                 @foreach($songs as $item)
-                    <tr data-value="{{$item->music_path}}" data-title="{{$item->title}}" data-artist="{{($item->artist == NULL) ? $item->album->artist : $item->artist}}">
+
+                    <tr data-value="{{$item->music_path}}" data-img="{{$item->image_path}}" data-title="{{$item->title}}" data-artist="{{($item->artist == NULL) ? $item->album->artist : $item->artist}}">
                         <td style="text-align: center"><i class="fa fa-play-circle"></i> </td>
                         <td>{{$item->title}}</td>
                         <td>{{$item->album->title}}</td>
@@ -58,7 +62,14 @@
             });
 
             $('tr').click(function () {
-                play.setAndReloadPlayer($(this).data('music'),"", true);
+                args = {
+                    music : $(this).data('value'),
+                    title : $(this).data('title'),
+                    artist : $(this).data('artist'),
+                    image : $(this).data('img'),
+                    play : true
+                };
+                play.setAndReloadPlayer(args);
             });
         });
     </script>

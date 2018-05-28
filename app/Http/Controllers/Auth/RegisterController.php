@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Afrika\Playlist;
 use App\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -86,7 +87,8 @@ class RegisterController extends Controller
     {
         $username = $this->getUsername(str_replace(['-', ' '], '', $data['firstname'].$data['lastname']));
 
-        return User::create([
+
+        $user = User::create([
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'username' => strtolower($username),
@@ -94,6 +96,13 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'password' => bcrypt($data['password']),
         ]);
+
+        Playlist::create([
+            'user_id' => $user->id,
+            'title' => 'default'
+        ]);
+
+        return $user;
     }
 
     public function register(Request $request)

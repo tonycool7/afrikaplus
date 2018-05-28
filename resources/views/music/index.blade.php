@@ -45,7 +45,7 @@
                             <span class="music-item__title">{{$item->title}}</span><br/>
                             <span class="music-item__artist">{{($item->artist == NULL) ? $item->album->artist : $item->artist}}</span>
                             <span class="music-item__length">00:00</span>
-                            <span class="add-music"><img src="/images/africa/addtoplaylist.png"/> </span>
+                            <span class="add-music" v-on:click="addMusic({{$item->id}})"><img src="/images/africa/addtoplaylist.png"/> </span>
                         </div>
                     </div>
                 </div>
@@ -88,5 +88,7 @@
                 $(this).addClass('music-active-pause')
             });
         });
+
+
     </script>
 @endsection

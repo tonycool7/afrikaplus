@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Afrikaplus;
 
-use App\Afrika\Posts;
-use App\User;
+use App\Afrika\Comments;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class PostsController extends Controller
+class CommentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -37,31 +36,14 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        $postData = $request->all();
+        $commentData = $request->all();
 
-        if($request->hasFile('image')){
-            $image = $request->file('image')->getClientOriginalName();
-            $postData['image'] = $image;
-            $request->image->storeAs('posts', $image);
-        }else{
-            return response()->json([
-               'result' => 'Image unable to upload'
-            ]);
-        }
-
-        Posts::create($postData);
+        $comment = Comments::create($commentData);
 
         return response()->json([
-            'result' => 'Image uploaded'
+            'comments' => $comment,
+            'success' => 'Comment added'
         ]);
-    }
-
-    public function fetchCommentOwner($comments){
-        $result = [];
-        foreach ($comments as $item){
-            array_push($result, array_merge(User::find($item->user_id)->toArray(),$item->toArray()));
-        }
-        return $result;
     }
 
     /**
@@ -72,15 +54,6 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $post = Posts::findOrFail($id);
-
-        return response()->json(
-            [
-                'post' => $post,
-                'likes' => count($post->likes),
-                'comments' => $this->fetchCommentOwner($post->comments)
-            ]
-        );
     }
 
     /**

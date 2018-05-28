@@ -83,6 +83,7 @@
   height: 295px;
   border: 1px solid #dbdbdb;
   border-radius: 4px;
+  margin-top: 10px;
 }
 .posts-icons-container {
   -webkit-transition: .3s all linear;
@@ -145,6 +146,7 @@
   border: 1px solid #dbdbdb;
   background-color: white;
   padding: 30px;
+  margin-top: 10px;
 }
 .users-info p {
   overflow-wrap: break-word;
@@ -162,19 +164,18 @@
   list-style: none;
   padding: 0px;
 }
-.stats-list li {
+.stats-list li div {
   height: 85px;
   width: 85px;
   display: inline-block;
   border: 1px solid #eeeeee;
   border-radius: 100%;
   padding: 10px;
-  margin-right: 30px;
 }
-.stats-list li a {
+.stats-list li div a {
   text-decoration: none;
 }
-.stats-list li span {
+.stats-list li div span {
   text-align: center;
   display: block;
 }
@@ -254,8 +255,14 @@
   font-size: 30px;
   color: white;
 }
+.logout-form {
+  top: 25px;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
 .modal-dialog {
-  -webkit-transform: translate(0, 20%) !important;
+  -webkit-transform: translate(0, 10%) !important;
 }
 .btn-edit {
   position: absolute;
@@ -274,15 +281,58 @@
 .btn-custom:hover {
   color: white;
 }
+.profile-setting {
+  width: 145px;
+  position: relative;
+  right: 77px;
+}
+.comments-container {
+  max-height: 270px;
+  height: 100%;
+  overflow-y: scroll;
+}
+.comment-hr {
+  margin-top: 3px;
+  margin-bottom: 10px;
+}
+.comment-heading {
+  margin: 0px;
+}
+.fa-post {
+  margin: 10px 10px 10px 0px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.post-comment {
+  border: 0;
+  outline: 0;
+  max-height: 80px;
+  max-width: 100%;
+  resize: none;
+}
+.loader {
+  height: 80px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
 .add-post {
   text-align: center;
   display: block;
 }
 .add-post i {
+  cursor: pointer;
   font-size: 50px;
 }
 .btn-follow {
   padding: 0px 25px;
+}
+.col-4 {
+  width: 33.3%;
+  float: left;
 }
 @media (max-width: 960px) {
   .profile-container {
@@ -294,5 +344,17 @@
   }
   .navbar-nav {
     width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .left-side-menu li {
+    text-align: center;
+    font-size: 20px;
+  }
+}
+@media (max-width: 1200px) {
+  .modal-dialog {
+    width: 90%;
+    margin: auto ! important;
   }
 }

@@ -96,11 +96,17 @@ Route::resource('/profile', 'Afrikaplus\\ProfileController');
 
 Route::resource('/posts', 'Afrikaplus\\PostsController');
 
+Route::resource('/likes', 'Afrikaplus\\LikesController');
+
+Route::resource('/playlist', 'Afrikaplus\\PlaylistController');
+
 Route::get('/fetch_user/{username}', 'Afrikaplus\\ProfileController@showJson');
 
 Route::post('/music_search', 'Afrikaplus\\MusicController@searchMusic');
 
 Route::post('/avatar', 'Afrikaplus\\ProfileController@uploadAvatar');
+
+Route::delete('/user', 'HomeController@deleteUser');
 
 Route::resource('/album', 'Afrikaplus\\AlbumController');
 Route::resource('/videos', 'Afrikaplus\\VideoController');
@@ -109,6 +115,7 @@ Route::resource('/movies', 'Afrikaplus\\MoviesController');
 Route::resource('/music', 'Afrikaplus\\MusicController');
 Route::resource('/djmix', 'Afrikaplus\\DjmixController');
 Route::resource('/news', 'Afrikaplus\\NewsController');
+Route::resource('/comments', 'Afrikaplus\\CommentsController');
 
 
 

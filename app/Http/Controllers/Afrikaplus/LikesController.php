@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Afrikaplus;
 
-use App\Afrika\Posts;
-use App\User;
+use App\Afrika\Likes;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class PostsController extends Controller
+class LikesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,6 +28,10 @@ class PostsController extends Controller
         //
     }
 
+    public function likeExists($request){
+        return Likes::where("post_id", $request->post_id)->Where("user_id", $request->user_id)->first() != null ? true : false;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -37,31 +40,19 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        $postData = $request->all();
+        $likeData = $request->all();
 
-        if($request->hasFile('image')){
-            $image = $request->file('image')->getClientOriginalName();
-            $postData['image'] = $image;
-            $request->image->storeAs('posts', $image);
+        if(!$this->likeExists($request)){
+            $like = Likes::create($likeData);
         }else{
-            return response()->json([
-               'result' => 'Image unable to upload'
-            ]);
+            Likes::where("post_id", $request->post_id)->Where("user_id", $request->user_id)->delete();
         }
 
-        Posts::create($postData);
-
+        $likes = Likes::where("post_id", $request->post_id)->get();
         return response()->json([
-            'result' => 'Image uploaded'
+            'likes' => count($likes),
+            'success' => 'like added'
         ]);
-    }
-
-    public function fetchCommentOwner($comments){
-        $result = [];
-        foreach ($comments as $item){
-            array_push($result, array_merge(User::find($item->user_id)->toArray(),$item->toArray()));
-        }
-        return $result;
     }
 
     /**
@@ -72,15 +63,12 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $post = Posts::findOrFail($id);
+        $likes = Likes::where("post_id", $id)->get();
 
-        return response()->json(
-            [
-                'post' => $post,
-                'likes' => count($post->likes),
-                'comments' => $this->fetchCommentOwner($post->comments)
-            ]
-        );
+        return response()->json([
+            'total' => count($likes),
+            'success' => 'ok'
+        ]);
     }
 
     /**
