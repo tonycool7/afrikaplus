@@ -33,5 +33,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap-datetime-picker": "^2.4.4"
+  }
 }

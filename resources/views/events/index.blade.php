@@ -33,7 +33,7 @@
                 @foreach($events as $item)
                         <div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
                             <a href="/events/{{$item->id}}" class="event-body">
-                                <div class="default-bg event-image" style="background-image: url(storage/events/{{$item->image_path}})"></div>
+                                <div class="default-bg event-image" style="background-image: url(storage/avatar/{{$item->image_path}})"></div>
                                 <h3 class="event-title">{{date("d/m/Y", strtotime($item->start_date))}}</h3>
                                 <p class="event-descr">{{$item->title}}</p>
                             </a>

@@ -18,7 +18,7 @@
                         <ul class="nav navbar-nav">
                             <li>
                                 <form class="form search-form">
-                                    <input type="text" v-model="search" placeholder="Find friends">
+                                    <input type="text" @change="searchFriends($event)" placeholder="Find friends">
                                 </form>
                             </li>
                             <li><a href="#"><i class="fa fa-bell"></i> </a></li>
@@ -59,7 +59,7 @@
                 <div class="col-sm-2">
                     <ul class="left-side-menu">
                         <li><a href="/profile" title="Go to Profile Page"><i class="fa fa-home"></i> Home</a></li>
-                        <li><a href="#"><i class="fa fa-pencil-square"></i> Events</a></li>
+                        <li><a href="/user_events"><i class="fa fa-pencil-square"></i> Events</a></li>
                         <li><a href="#"><i class="fa fa-envelope"></i> Messages</a></li>
                         <li><a href="#"><i class="fa fa-picture-o"></i> Photo</a></li>
                         <li><a href="#"><i class="fa fa-map"></i> Inside Afrika</a></li>
@@ -85,7 +85,7 @@
                         </div>
                         <div class="col-sm-8">
                             <div class="users-info">
-                                <h3 class="no-margin">{{userData.username}} <span v-if="authorized" class="btn btn-custom btn-follow" title="" >Follow</span><a href="/profile/edit" v-else class="btn btn-default" title="" >Edit <i class="fa fa-support"></i></a></h3>
+                                <h3 class="no-margin">{{(event) ? event.title : userData.username}} <span v-if="authorized" class="btn btn-custom btn-follow" title="" >Follow</span><a :href="'/profile/'+this.user.userDetails.id+'/edit'" v-else class="btn btn-default" title="" >Edit <i class="fa fa-support"></i></a></h3>
                                 <ul class="stats-list row">
                                     <li class="col-4">
                                         <div>
@@ -110,7 +110,7 @@
                                         </div>
                                     </li>
                                 </ul>
-                                <p><strong>{{userData.firstname}} {{userData.lastname}}</strong> {{userData.status}}</p>
+                                <p><strong>{{(event) ? event.title : userData.firstname}} {{(event) ? event.title : userData.lasttname}}</strong> {{userData.status}}</p>
                             </div>
                         </div>
                     </div>
@@ -230,11 +230,11 @@
     export default {
         data(){
             return ({
+                event : this.user.event,
                 non_user : (this.user.authUser == null) ? true : false,
                 authorized : !this.user.authorized,
                 canEdit : this.user.authorized,
                 user_id: this.user.userDetails.id,
-                search : '',
                 authUser: this.user.authUser,
                 text: "",
                 comment : "",

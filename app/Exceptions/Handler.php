@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Jrean\UserVerification\Exceptions\UserNotVerifiedException;
@@ -50,15 +51,18 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if($exception instanceof UserNotVerifiedException) {
-            if ($request->getRequestUri() == "/shop/account") {
-                return redirect('/shop/nonactivated');
-            }
-            return redirect('/nonactivated');
-        }elseif($exception->getMessage() != "The given data was invalid."){
-            return view('error.error');
-        }
 
+//        if($exception instanceof AuthenticationException) {
+//            return redirect('/login');
+//        }
+//        if($exception instanceof UserNotVerifiedException) {
+//            if ($request->getRequestUri() == "/shop/account") {
+//                return redirect('/shop/nonactivated');
+//            }
+//            return redirect('/nonactivated');
+//        }elseif($exception->getMessage() != "The given data was invalid."){
+//            return view('error.error');
+//        }
 
         return parent::render($request, $exception);
     }

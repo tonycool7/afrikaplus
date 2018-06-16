@@ -1,0 +1,111 @@
+.video-player-container{
+  width: 100%;
+  height: 400px;
+  position: absolute;
+  top:0;
+  left: 0;
+  right: 0;
+  margin: 100px auto;
+  //outline: 1px solid white;
+}
+
+.video-player-wrapper{
+  max-width: 710px;
+  width: 100%;
+  margin: auto;
+  height: 500px;
+  position: relative;
+}
+video{
+  width: 100%;
+  height: auto;
+}
+.loading-container{
+  margin: 20px 0px 0px 0px;
+  position: relative;
+  width: 100%;
+  height: 3px;
+  background-color: #545454;
+  border-radius: 2px;
+}
+
+.buffered-video{
+  position: absolute;
+  z-index: 2;
+  width: 0%;
+  height: 3px;
+  background-color: #72b7b7;
+  border-radius: 2px;
+}
+
+.loaded-video{
+  position: absolute;
+  z-index: 5;
+  width: 0%;
+  height: 3px;
+  background-color: #840101;
+  border-radius: 2px;
+}
+
+.video-play-icon{
+  position: absolute;
+  width: 60px;
+  height: auto;
+  top: 0;
+  bottom: 0;
+  opacity: 1;
+  left: 0;
+  right: 0;
+  margin: auto;
+  transition: .3s all ease-in-out;
+  &:hover{
+    transform: scale(1.11);
+  }
+}
+
+.volume-range{
+  position: relative;
+  top:5px;
+}
+
+input[type="range"] {
+  cursor: copy;
+}
+
+.video-controls{
+  position: absolute;
+  padding: 0px 15px;
+  list-style: none;
+  width: 100%;
+  bottom: 15px;
+}
+
+.time{
+  color: white;
+}
+
+.play-container{
+  padding-top: 5px;
+  width: 5%;
+  float: left;
+  color: white;
+}
+
+.skip-container{
+  padding-top: 5px;
+  width: 5%;
+  float: left;
+  color: white;
+}
+
+.speaker-container{
+  padding-top: 5px;
+  width: 5%;
+  float: left;
+  color: white;
+}
+
+.time{
+  width: 15%;
+  float: left;
+}

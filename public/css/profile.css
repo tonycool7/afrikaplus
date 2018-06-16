@@ -193,6 +193,11 @@
 .posts-container {
   position: relative;
 }
+.text-strong {
+  font-size: 24px;
+  color: black;
+  font-weight: bold;
+}
 .default-bg {
   background-position: center;
   background-repeat: no-repeat;
@@ -273,6 +278,10 @@
 .btn-black {
   background-color: black;
   color: white;
+}
+.btn-black:hover {
+  color: white;
+  font-weight: 600;
 }
 .btn-custom {
   background-color: #68a3b0;

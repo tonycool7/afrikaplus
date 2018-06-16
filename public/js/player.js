@@ -2,9 +2,10 @@ function player(args) {
     if (!(this instanceof player)) {
         return new player(args);
     }
+    this.current_row = "";
     this.audioElement = document.getElementById(args.audio);
     this.audiosource = document.getElementById(args.source);
-    this.playlist = args.playlist
+    this.playlist = args.playlist;
     this.playerImage = $('.album__image');
     this.player_title = $('.album-music__title');
     this.player_artist = $('.album-music__artist');
@@ -19,7 +20,6 @@ function player(args) {
     this.repeatBtn = args.repeatBtn ? $(args.repeatBtn) : $('.album-repeat');
     this.currentLengthDiv = args.currentLengthDiv ? $(args.currentLengthDiv) : $('.current-length');
     this.bufferedLengthDiv = args.bufferedLengthDiv ? $(args.bufferedLengthDiv) : $('.loaded-length');
-
     var self = this;
     $(document).ready(function () {
         self.reloadPlayer(false);
@@ -54,9 +54,9 @@ function player(args) {
     this.playBtn.on('click', function () {
         console.log(self.audioElement.paused);
         if (self.audioElement.paused) {
-            self.play();
+            self.play(self.current_row);
         } else {
-            self.pause();
+            self.pause(self.current_row);
         }
     });
 
@@ -70,15 +70,15 @@ player.prototype = {
 
     setAndReloadPlayer: function setAndReloadPlayer(args) {
         this.audiosource.src = "/storage/music/" + args.music;
-        console.log(args.music);
         this.playerImage.css('background-image', 'url(/storage/images/'+args.image+')');
         this.player_title.text(args.title);
         this.player_artist.text(args.artist);
         this.audioElement.load();
-        if (args.play) this.play();
+        if (args.play) this.play(args.row);
     },
 
     setTime: function(){
+        $('.loading .music-item__length').html(((this.audioElement.duration - this.audioElement.currentTime)/100).toFixed(2).replace('.', ':'))
         this.playlist.find(this.album_item_active).find('.music-item__length').html(((this.audioElement.duration - this.audioElement.currentTime)/100).toFixed(2).replace('.', ':'));
     },
 
@@ -91,17 +91,15 @@ player.prototype = {
             image : this.playlist.data('thumbnail') ? this.playlist.data('thumbnail') : first.data('img'),
             title : first.data('title'),
             artist : first.data('artist'),
-            play: play
+            play: play,
+            row: first
         };
-        this.playerImage.css('background-image', 'url(/storage/images/'+args.image+')');
-        this.player_title.text(args.title);
-        this.player_artist.text(args.artist);
-        this.pause();
+        this.current_row = first;
         this.setAndReloadPlayer(args);
     },
 
     next: function next() {
-        var current = this.playlist.find(this.album_item_active);
+        current = this.playlist.find(this.album_item_active);
         var next = current.next();
         if (next.length == 0) {
             current.removeClass('active')
@@ -116,9 +114,11 @@ player.prototype = {
             image : this.playlist.data('thumbnail') ? this.playlist.data('thumbnail') : next.data('img'),
             title : next.data('title'),
             artist : next.data('artist'),
-            play: true
+            play: true,
+            row: current.next()
         };
 
+        this.current_row = current.next();
         this.setActiveStyling(current,next);
 
         this.setAndReloadPlayer(args);
@@ -140,8 +140,10 @@ player.prototype = {
             image : this.playlist.data('thumbnail') ? this.playlist.data('thumbnail') : prev.data('img'),
             title : prev.data('title'),
             artist : prev.data('artist'),
-            play: true
+            play: true,
+            row: current.prev()
         };
+        this.current_row = current.prev();
 
         this.setActiveStyling(current,prev);
 
@@ -163,30 +165,40 @@ player.prototype = {
 
     },
 
-    setAndPlay: function setAndPlay(music) {
-        this.audiosource.src = "/storage/music/" + music;
+    setAndPlay: function setAndPlay(args) {
+        this.playlist.find(this.album_item).removeClass('active');
+        args.row.addClass('active');
+        this.current_row = args.row;
+        this.audiosource.src = "/storage/music/" + args.music;
+        this.playerImage.css('background-image', 'url(/storage/images/'+args.image+')');
+        this.player_title.text(args.title);
+        this.player_artist.text(args.artist);
         this.audioElement.load();
+        if (args.play) this.play(args.row);
+    },
+
+    play: function play(el) {
+        this.setPlayIcon(el);
         this.audioElement.play();
     },
 
-    play: function play() {
-        this.setPlayIcon();
-        this.audioElement.play();
-    },
-
-    pause: function pause() {
-        this.setPauseIcon();
+    pause: function pause(el) {
+        this.setPauseIcon(el);
         this.audioElement.pause();
     },
 
-    setPauseIcon: function setPauseIcon() {
+    setPauseIcon: function setPauseIcon(el) {
         var play = this.playBtn.find('i');
+        $('.play-icon').removeClass('fa-pause').addClass('fa-play-circle');
+        el.find('.play-icon').removeClass('fa-pause').addClass('fa-play-circle');
         play.removeClass('fa-pause');
         play.addClass('fa-play-circle');
     },
 
-    setPlayIcon: function setPlayIcon() {
+    setPlayIcon: function setPlayIcon(el) {
         var play = this.playBtn.find('i');
+        $('.play-icon').removeClass('fa-pause').addClass('fa-play-circle');
+        el.find('.play-icon').removeClass('fa-play-circle').addClass('fa-pause');
         play.removeClass('fa-play-circle');
         play.addClass('fa-pause');
     },

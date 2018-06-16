@@ -18,24 +18,37 @@
     <div class="container-fluid events-wrapper">
         <div class="row">
             <div class="events-item-container">
-                <div class="contain-bg col-md-6 event-item" style="background-image: url(/storage/events/{{$event->image_path}})">
+                <div class="row">
+                    <div class="contain-bg col-md-6 event-item" style="background-image: url(/storage/avatar/{{$event->image_path}})">
 
+                    </div>
+                    <div class="col-md-6 event-descr">
+                        <ul>
+                            <li>{{$event->title}}</li>
+                            <li>{{$event->description}}</li>
+                            <li>{{date("d/m/Y", strtotime($event->start_date))}} {{$event->start_time}} - {{date("d/m/Y", strtotime($event->end_date))}} {{$event->end_time}}</li>
+                            <li>{{$event->country}}, {{$event->city}}</li>
+                            <li>Venue: {{$event->venue}}</li>
+                        </ul>
+                        <h4 class="checkout-event">Checkout event page on our social network <a href="/profile/event{{$event->id}}">{{$event->title}}</a> </h4>
+                    </div>
                 </div>
-                <div class="col-md-6 event-descr">
-                    <ul>
-                        <li>{{$event->title}}</li>
-                        <li>{{$event->description}}</li>
-                        <li>{{date("d/m/Y", strtotime($event->start_date))}} {{$event->start_time}} - {{date("d/m/Y", strtotime($event->end_date))}} {{$event->end_time}}</li>
-                        <li>{{$event->country}}, {{$event->city}}</li>
-                        <li>Venue: {{$event->venue}}</li>
-                    </ul>
+
+                <div class="row">
+                    @if($posts)
+                        <h4 class="event-gallery-header">Event Gallery</h4>
+                    @endif
+                    @foreach($posts as $item)
+                        <div class="col-xs-6">
+                            <div class="event-post-img" style="background-image: url(/storage/posts/{{$item->image}})"></div>
+                            <h5 class="event-post-title">{{$item->text}}</h5>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
 
-        <div class="row">
 
-        </div>
     </div>
     @include('general-playlist')
     @include('layouts.audio-player')

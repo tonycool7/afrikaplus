@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Afrikaplus;
 
+use App\Afrika\Events;
 use App\Afrika\Posts;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
@@ -55,11 +56,22 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
+        $event = Events::find(str_replace('event', "",$id));
+
         $authUser = \Auth::user();
         $userObj = \App\User::where('username', $id)->first();
-        $authorized = ($userObj->id == \Auth::id()) ? true : false;
+        $authorized = false;
+
+        if($userObj->id == \Auth::id()){
+            $authorized = true;
+        }elseif(!is_null($event)){
+            if(\Auth::id() == $event->organiser_id){
+                $authorized = true;
+            }
+        }
 
         $user = [
+            'event' => $event,
             'authUser' => $authUser ?? null,
             'authorized' => $authorized,
             'userDetails' => $userObj->toArray(),
@@ -97,6 +109,12 @@ class ProfileController extends Controller
 
         $user->updateOrCreate(['lastname' => $user->lastname, 'firstname' => $user->firstname], ['image' => $image ]);
 
+        if(stripos($user->username, 'event') === 0){
+            $id = str_replace('event', "",$user->username);
+            $event = Events::find($id);
+            $event->update(['image_path' => $image ]);
+        }
+
         return response()->json([
             'result' => 'Image uploaded'
         ]);
@@ -110,7 +128,13 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = \App\User::findOrFail($id);
+
+        if(stripos($user->username, "event") === 0){
+            return redirect('/user_events/'.str_replace('event', "",$user->username)."/edit");
+        }
+
+        return view('profile.edit', compact('user'));
     }
 
     /**

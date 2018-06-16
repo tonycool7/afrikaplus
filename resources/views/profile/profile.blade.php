@@ -1,5 +1,9 @@
 @extends('layouts.profile')
 
+@section('title')
+    {!! $user['authUser']->firstname !!}
+@endsection
+
 @section('styling')
     <link href="{{mix('/css/profile.css')}}" rel="stylesheet" type="text/css"/>
 @endsection

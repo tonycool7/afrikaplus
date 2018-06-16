@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Afrikaplus;
 
 use App\Afrika\Events;
 use App\Afrika\Music;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -46,7 +47,7 @@ class EventsController extends Controller
         if($request->hasFile('image_path')){
             $image = $request->file('image_path')->getClientOriginalName();
             $eventsData['image_path'] = $image;
-            $request->image_path->storeAs('events', $image);
+            $request->image_path->storeAs('avatar', $image);
         }else{
             return redirect()->back()->with(['error' => 'Error uploading image']);
         }
@@ -67,8 +68,11 @@ class EventsController extends Controller
     {
         $songs = Music::inRandomOrder()->get();
         $event = Events::findOrFail($id);
+        $user = User::where('username', 'event'.$id)->first();
 
-        return view('events.show', compact('event', 'songs'));
+        $posts = $user->posts;
+
+        return view('events.show', compact('event', 'songs', 'posts'));
     }
 
     /**
@@ -100,7 +104,7 @@ class EventsController extends Controller
         if($request->hasFile('image_path')){
             $image = $request->file('image_path')->getClientOriginalName();
             $eventsData['image_path'] = $image;
-            $request->image_path->storeAs('events', $image);
+            $request->image_path->storeAs('avatar', $image);
         }
 
         $event->update($eventsData);
@@ -117,7 +121,7 @@ class EventsController extends Controller
     public function destroy($id)
     {
         $event = Events::findOrFail($id);
-        if(!Storage::delete("/events/".$event->image_path)){
+        if(!Storage::delete("/avatar/".$event->image_path)){
             return redirect()->back()->with(['error' => 'Unable to delete event!']);
         }
         Events::destroy($id);

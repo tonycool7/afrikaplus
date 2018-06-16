@@ -1,8 +1,19 @@
 @extends('layouts.profile')
 
+@section('title')
+    {!! \Auth::user()->firstname !!}
+@endsection
+
 @section('styling')
+    <link href="/css/datepicker.css" rel="stylesheet" type="text/css"/>
     <link href="{{mix('/css/profile.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{mix('/css/playlist.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{mix('/css/userevent.css')}}" rel="stylesheet" type="text/css"/>
+    <style>
+        .profile-setting{
+            display: none;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -24,7 +35,7 @@
                         <ul class="nav navbar-nav">
                             <li>
                                 <form class="form search-form">
-                                    <input type="text" v-model="search" placeholder="Find friends">
+                                    <input type="text" placeholder="Find friends">
                                 </form>
                             </li>
                             <li><a href="#"><i class="fa fa-bell"></i> </a></li>
@@ -37,16 +48,16 @@
                             @else
                                 <li>
                                     <a href="#" class="profile-pik-container dropdown">
-                                    <span class="default-bg profile-pik" alt="avatar" style="background-image: url(/storage/avatar/{{\Auth::user()->image}}">
+                                    <span class="default-bg profile-pik" onclick="toggleLogout()"  alt="avatar" style="background-image: url(/storage/avatar/{{\Auth::user()->image}}">
                                     <i class="fa fa-caret-down profile-caret"></i>
-                                    <div v-if="logout" class="profile-setting">
+                                    <div class="profile-setting">
                                         <form action="/logout" method="post" class="logout-form">
-                                            <input type="hidden" name="_token" :value="csrf">
+                                            {{csrf_field()}}
                                             <input type="submit" class="btn btn-block btn-default" value="logout">
                                         </form>
 
                                         <form action="/user" method="post" class="logout-form">
-                                            <input type="hidden" name="_token" :value="csrf">
+                                            {{csrf_field()}}
                                             <input type="hidden" name="_method" value="delete">
                                             <input type="submit" class="btn btn-block btn-default" value="Delete Profile">
                                         </form>
@@ -78,40 +89,59 @@
                 </ul>
             </div>
             <div class="col-sm-10 playlist-container">
-                <div class="">
-                    <div class="player-container">
-                        @include('layouts.playlist-player')
+                <h5 class="text-strong">Edit profile</h5>
+                <hr/>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-xs-3">Status</label>
+                        <div class="col-xs-9">
+                            <textarea name="status" class="form-control">{{$user->status}}</textarea>
+                        </div>
                     </div>
-                    <div class="playlist-search">
-                        <form>
-                            <input type="text" placeholder="search playlist" class="form-control">
-                        </form>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3">Firstname</label>
+                        <div class="col-xs-9">
+                            <input class="form-control" name="firstname" value="{{$user->firstname}}" type="text" placeholder="firstname">
+                        </div>
                     </div>
-                    <h5 class="text-black text-strong">Audios</h5>
-                    <ul class="playlist">
-                        @foreach($playlist as $item)
-                            @php
-                                $image = $item->music->image_path ?? $item->music->album->image_path ?? "";
-                            @endphp
-                            <li class="col-sm-12 music-border" data-img="{{$image}}" data-title="{{$item->music->title}}" data-artist="{{($item->music->artist == NULL) ? $item->music->album->artist : $item->music->artist}}" data-value="{{$item->music->music_path}}">
-                                <div class="music">
-                                    <div class="music-loader">
+                    <div class="form-group">
+                        <label class="control-label col-xs-3">Lastname</label>
+                        <div class="col-xs-9">
+                            <input class="form-control" name="lastname" value="{{$user->lastname}}" type="text" placeholder="lastname">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3">Email</label>
+                        <div class="col-xs-9">
+                            <input class="form-control" name="email" value="{{$user->email}}" type="email" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3">Phone</label>
+                        <div class="col-xs-9">
+                            <input class="form-control" name="phone" value="{{$user->phone}}" type="tel" placeholder="Telephone">
+                        </div>
+                    </div>
 
-                                    </div>
-                                    <div class="music__item">
-                                        <i class="fa fa-play-circle play-icon"></i>
-                                        <span style="background-image: url(storage/images/{{$image}})" class="music-item__img default-bg"></span>
-                                        <div class="music-item__description">
-                                            <span class="music-item__title">{{$item->music->title}}</span><br/>
-                                            <span class="music-item__artist">{{($item->music->artist == NULL) ? $item->music->album->artist : $item->music->artist}}</span>
-                                            <span class="music-item__length">00:00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3">Country</label>
+                        <div class="col-xs-9">
+                            <input class="form-control" name="country" value="{{$user->country}}" type="text" placeholder="Country">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3">City</label>
+                        <div class="col-xs-9">
+                            <input class="form-control" name="city" value="{{$user->city}}" type="text" placeholder="City">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3"></label>
+                        <div class="col-xs-9">
+                            <button class="btn btn-black">Save</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -119,27 +149,9 @@
 @endsection
 
 @section('scripts')
-    <script src="/js/player.js"></script>
-    <script>
-        $(function(){
-            var play = new player({
-                audio : 'audio',
-                source : 'audioSource',
-                playlist : $('.playlist'),
-            });
-
-            $('.playlist li').click(function () {
-                args = {
-                    music : $(this).data('value'),
-                    title : $(this).data('title'),
-                    artist : $(this).data('artist'),
-                    image : $(this).data('img'),
-                    play : true,
-                    row: $(this)
-                };
-                play.setAndPlay(args);
-            });
-        });
-
+    <script type="text/javascript">
+        function toggleLogout(){
+            $('.profile-setting').toggle();
+        }
     </script>
 @endsection

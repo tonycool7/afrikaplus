@@ -116,6 +116,7 @@ Route::resource('/music', 'Afrikaplus\\MusicController');
 Route::resource('/djmix', 'Afrikaplus\\DjmixController');
 Route::resource('/news', 'Afrikaplus\\NewsController');
 Route::resource('/comments', 'Afrikaplus\\CommentsController');
+Route::resource('/user_events', 'Afrikaplus\\UserEventsController');
 
 
 

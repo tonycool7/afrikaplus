@@ -5,6 +5,9 @@ function player(args) {
     this.audioElement = document.getElementById(args.audio);
     this.audiosource = document.getElementById(args.source);
     this.playlist = args.playlist;
+    this.playerImage = $('.album__image');
+    this.player_title = $('.album-music__title');
+    this.player_artist = $('.album-music__artist');
     this.album_item = args.table ? 'tr' : 'li';
     this.album_item_first = args.table ? 'tr:first' : 'li:first';
     this.album_item_active = args.table ? 'tr.active' : 'li.active';
@@ -16,15 +19,19 @@ function player(args) {
     this.repeatBtn = args.repeatBtn ? $(args.repeatBtn) : $('.album-repeat');
     this.currentLengthDiv = args.currentLengthDiv ? $(args.currentLengthDiv) : $('.current-length');
     this.bufferedLengthDiv = args.bufferedLengthDiv ? $(args.bufferedLengthDiv) : $('.loaded-length');
-
     var self = this;
     $(document).ready(function () {
-        self.reloadPlayer();
+        self.reloadPlayer(false);
     });
 
     this.audioElement.addEventListener('timeupdate', function () {
         self.updateBufferedLength();
         self.updateCurrentTimeLength();
+        self.setTime();
+    });
+
+    this.audioElement.addEventListener('loadedmetadata', function() {
+        self.setTime();
     });
 
     this.nextBtn.on('click', function () {
@@ -60,52 +67,99 @@ function player(args) {
 player.prototype = {
     constructor: player,
 
-    setAndReloadPlayer: function setAndReloadPlayer(music) {
-        var play = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
-        this.audiosource.src = "/storage/music/" + music;
-        this.title.text(music);
+    setAndReloadPlayer: function setAndReloadPlayer(args) {
+        this.audiosource.src = "/storage/music/" + args.music;
+        console.log(args.music);
+        this.playerImage.css('background-image', 'url(/storage/images/'+args.image+')');
+        this.player_title.text(args.title);
+        this.player_artist.text(args.artist);
         this.audioElement.load();
-        if (play) this.play();
+        if (args.play) this.play();
     },
 
-    reloadPlayer: function reloadPlayer() {
-        var play = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+    setTime: function(){
+        this.playlist.find(this.album_item_active).find('.music-item__length').html(((this.audioElement.duration - this.audioElement.currentTime)/100).toFixed(2).replace('.', ':'));
+    },
 
+    reloadPlayer: function reloadPlayer(play) {
         this.playlist.find(this.album_item).removeClass('active');
         var first = this.playlist.find(this.album_item_first);
         first.addClass('active');
-        var music = first.data('value');
+        var args = {
+            music : first.data('value'),
+            image : this.playlist.data('thumbnail') ? this.playlist.data('thumbnail') : first.data('img'),
+            title : first.data('title'),
+            artist : first.data('artist'),
+            play: play
+        };
+        this.playerImage.css('background-image', 'url(/storage/images/'+args.image+')');
+        this.player_title.text(args.title);
+        this.player_artist.text(args.artist);
         this.pause();
-        this.setAndReloadPlayer(music, play);
+        this.setAndReloadPlayer(args);
     },
 
     next: function next() {
         var current = this.playlist.find(this.album_item_active);
         var next = current.next();
         if (next.length == 0) {
-            current.removeClass('active');
-            this.reloadPlayer();
+            current.removeClass('active')
+                .removeClass('music-border-active')
+                .removeClass('music-active-pause');
+            this.reloadPlayer(true);
             return;
         }
-        next.addClass('active');
-        current.removeClass('active');
-        var music = next.data('value');
-        this.setAndReloadPlayer(music, true);
+
+        var args = {
+            music : next.data('value'),
+            image : this.playlist.data('thumbnail') ? this.playlist.data('thumbnail') : next.data('img'),
+            title : next.data('title'),
+            artist : next.data('artist'),
+            play: true
+        };
+
+        this.setActiveStyling(current,next);
+
+        this.setAndReloadPlayer(args);
     },
 
     prev: function prev() {
         var current = this.playlist.find(this.album_item_active);
         var prev = current.prev();
         if (prev.length == 0) {
-            current.removeClass('active');
-            this.reloadPlayer();
+            current.removeClass('active')
+                .removeClass('music-border-active')
+                .removeClass('music-active-pause');
+            this.reloadPlayer(true);
             return;
         }
-        prev.addClass('active');
-        current.removeClass('active');
-        var music = prev.data('value');
-        this.setAndReloadPlayer(music, true);
+
+        var args = {
+            music : prev.data('value'),
+            image : this.playlist.data('thumbnail') ? this.playlist.data('thumbnail') : prev.data('img'),
+            title : prev.data('title'),
+            artist : prev.data('artist'),
+            play: true
+        };
+
+        this.setActiveStyling(current,prev);
+
+        this.setAndReloadPlayer(args);
+    },
+
+    setActiveStyling: function(current, nextorprev){
+        if(this.album_item == "tr"){
+            nextorprev.addClass('active');
+            current.removeClass('active');
+        }else if(this.album_item == "li"){
+            nextorprev.addClass('music-border-active')
+                .addClass('active')
+                .addClass('music-active-pause');
+            current.removeClass('music-active-pause')
+                .removeClass('active')
+                .removeClass('music-border-active');
+        }
+
     },
 
     setAndPlay: function setAndPlay(music) {
@@ -127,12 +181,12 @@ player.prototype = {
     setPauseIcon: function setPauseIcon() {
         var play = this.playBtn.find('i');
         play.removeClass('fa-pause');
-        play.addClass('fa-play');
+        play.addClass('fa-play-circle');
     },
 
     setPlayIcon: function setPlayIcon() {
         var play = this.playBtn.find('i');
-        play.removeClass('fa-play');
+        play.removeClass('fa-play-circle');
         play.addClass('fa-pause');
     },
 

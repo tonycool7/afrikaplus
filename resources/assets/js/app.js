@@ -10,6 +10,8 @@ require('./bootstrap');
 
 require('owl.carousel');
 
+require('bootstrap-datetime-picker');
+
 window.Vue = require('vue');
 
 var Vue =require('vue');
@@ -19,9 +21,6 @@ Vue.use(require('vue-resource'));
 import Cart from './components/Cart.vue';
 
 import Profile from './components/Profile.vue';
-
-import Playlist from './components/Playlist.vue';
-
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -63,6 +62,7 @@ var profile = new Vue({
     el: '#app',
     data(){
         return {
+            logout : false
         }
     },
 
@@ -77,7 +77,21 @@ var profile = new Vue({
             }).catch(e => {
                 alert(e);
             });
-        }
+        },
+
+        toggleResposiveMenu(){
+            this.showRespNav = !this.showRespNav;
+            if(this.showRespNav){
+                $('.responsive-nav').animate({
+                    height: "450px"
+                }, 500);
+            }else{
+                $('.responsive-nav').animate({
+                    height: "0px"
+                }, 500);
+            }
+        },
+
     },
-    components : {Profile, Playlist}
+    components : {Profile}
 });

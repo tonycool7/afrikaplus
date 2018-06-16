@@ -32,9 +32,8 @@
                     $image = $album->image_path;
                 @endphp
                 @foreach($songs as $item)
-
                     <tr data-value="{{$item->music_path}}" data-img="{{$item->image_path}}" data-title="{{$item->title}}" data-artist="{{($item->artist == NULL) ? $item->album->artist : $item->artist}}">
-                        <td style="text-align: center"><i class="fa fa-play-circle"></i> </td>
+                        <td style="text-align: center"><i class="fa fa-play-circle play-icon"></i> </td>
                         <td>{{$item->title}}</td>
                         <td>{{$item->album->title}}</td>
                         <td>{{($item->artist == NULL) ? $item->album->artist : $item->artist}}</td>
@@ -67,9 +66,10 @@
                     title : $(this).data('title'),
                     artist : $(this).data('artist'),
                     image : $(this).data('img'),
-                    play : true
+                    play : true,
+                    row: $(this)
                 };
-                play.setAndReloadPlayer(args);
+                play.setAndPlay(args);
             });
         });
     </script>

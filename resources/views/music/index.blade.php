@@ -81,7 +81,8 @@
                     image : $(this).data('img'),
                     title : $(this).data('title'),
                     artist : $(this).data('artist'),
-                    play: true
+                    play: true,
+                    row: $(this)
                 };
                 play.setAndReloadPlayer(args);
                 $('.music-border').removeClass('music-active-pause');
