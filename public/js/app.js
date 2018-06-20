@@ -1963,10 +1963,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            searchResult: [],
             event: this.user.event,
             non_user: this.user.authUser == null ? true : false,
             authorized: !this.user.authorized,
@@ -1974,6 +1980,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             user_id: this.user.userDetails.id,
             authUser: this.user.authUser,
             text: "",
+            searchtext: "",
             comment: "",
             logout: false,
             comments: [],
@@ -1990,6 +1997,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     props: ['csrf', 'user'],
+    watch: {
+        'searchtext': function searchtext(value) {
+            var _this = this;
+
+            var formData = new FormData();
+            formData.append('searchtext', value);
+            formData.append('_token', this.csrf);
+            axios.post('/find_user', formData).then(function (res) {
+                _this.searchResult = res.data.users;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    },
     mounted: function mounted() {
         console.log('Component mounted.');
     },
@@ -1999,17 +2020,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         fetchUserData: function fetchUserData() {
-            var _this = this;
+            var _this2 = this;
 
             axios.get('/fetch_user/' + this.user.userDetails.username).then(function (res) {
-                _this.posts = res.data.user.posts;
-                _this.avatar = res.data.user.userDetails.image;
+                _this2.posts = res.data.user.posts;
+                _this2.avatar = res.data.user.userDetails.image;
             }).catch(function (err) {
                 return console.error(err);
             });
         },
         addPost: function addPost() {
-            var _this2 = this;
+            var _this3 = this;
 
             this.postsLoader = true;
             $('#add-post').modal('hide');
@@ -2019,8 +2040,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             formData.append('user_id', this.user_id);
             formData.append('_token', this.csrf);
             axios.post('/posts', formData).then(function (res) {
-                _this2.fetchUserData();
-                _this2.postsLoader = false;
+                _this3.fetchUserData();
+                _this3.postsLoader = false;
             }).catch(function (error) {
                 console.log(error);
             });
@@ -2032,7 +2053,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             $('#view-post').modal('show');
         },
         likePost: function likePost(post_id) {
-            var _this3 = this;
+            var _this4 = this;
 
             if (this.authUser != null) {
                 var formData = new FormData();
@@ -2040,33 +2061,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 formData.append('user_id', this.user_id);
                 formData.append('_token', this.csrf);
                 axios.post('/likes', formData).then(function (res) {
-                    _this3.likesTotal = res.data.likes;
+                    _this4.likesTotal = res.data.likes;
                 }).catch(function (error) {
                     console.log(error);
                 });
             }
         },
         fetchLikes: function fetchLikes(post_id) {
-            var _this4 = this;
+            var _this5 = this;
 
             axios.get('/likes/' + post_id).then(function (res) {
-                _this4.likesTotal = res.data.total;
+                _this5.likesTotal = res.data.total;
             }).catch(function (err) {
                 return console.error(err);
             });
         },
         fetchComments: function fetchComments(id) {
-            var _this5 = this;
+            var _this6 = this;
 
             axios.get('/posts/' + id).then(function (res) {
-                _this5.comments = res.data.comments;
-                _this5.commentsTotal = _this5.comments.length;
+                _this6.comments = res.data.comments;
+                _this6.commentsTotal = _this6.comments.length;
             }).catch(function (err) {
                 return console.error(err);
             });
         },
         addComment: function addComment() {
-            var _this6 = this;
+            var _this7 = this;
 
             if (this.authUser != null) {
                 var formData = new FormData();
@@ -2075,8 +2096,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 formData.append('post_id', this.viewPostData.id);
                 formData.append('_token', this.csrf);
                 axios.post('/comments', formData).then(function (res) {
-                    _this6.fetchComments(_this6.viewPostData.id);
-                    _this6.comment = "";
+                    _this7.fetchComments(_this7.viewPostData.id);
+                    _this7.comment = "";
                 }).catch(function (error) {
                     console.log(error);
                 });
@@ -2091,7 +2112,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             $('#avatar').click();
         },
         uploadAvatar: function uploadAvatar() {
-            var _this7 = this;
+            var _this8 = this;
 
             this.avatarLoader = true;
             var formData = new FormData();
@@ -2099,8 +2120,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             formData.append('_token', this.csrf);
             formData.append('user_id', this.user_id);
             axios.post('/avatar', formData).then(function (res) {
-                _this7.fetchUserData();
-                _this7.avatarLoader = false;
+                _this8.fetchUserData();
+                _this8.avatarLoader = false;
             }).catch(function (error) {
                 console.log(error);
             });
@@ -37845,14 +37866,55 @@ var render = function() {
                   _c("li", [
                     _c("form", { staticClass: "form search-form" }, [
                       _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.searchtext,
+                            expression: "searchtext"
+                          }
+                        ],
                         attrs: { type: "text", placeholder: "Find friends" },
+                        domProps: { value: _vm.searchtext },
                         on: {
-                          change: function($event) {
-                            _vm.searchFriends($event)
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.searchtext = $event.target.value
                           }
                         }
                       })
-                    ])
+                    ]),
+                    _vm._v(" "),
+                    _vm.searchResult.length > 0
+                      ? _c(
+                          "div",
+                          { staticClass: "search-result" },
+                          _vm._l(_vm.searchResult, function(user) {
+                            return _c("ul", [
+                              _c("li", [
+                                _c("a", {
+                                  staticClass: "user-search-img",
+                                  style: {
+                                    "background-image":
+                                      "url(/storage/avatar/" + user.image + ")"
+                                  },
+                                  attrs: {
+                                    href: "/profile/" + user.username + ""
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  { staticClass: "user-search-name" },
+                                  [_vm._v(_vm._s(user.firstname))]
+                                )
+                              ])
+                            ])
+                          })
+                        )
+                      : _vm._e()
                   ]),
                   _vm._v(" "),
                   _vm._m(1)
@@ -38468,22 +38530,8 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("li", [
           _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fa fa-picture-o" }),
-            _vm._v(" Photo")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "#" } }, [
             _c("i", { staticClass: "fa fa-map" }),
             _vm._v(" Inside Afrika")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fa fa-music" }),
-            _vm._v(" Album")
           ])
         ]),
         _vm._v(" "),
@@ -51343,10 +51391,26 @@ var profile = new Vue({
     el: '#app',
     data: function data() {
         return {
+            searchtext: '',
+            searchResult: [],
             logout: false
         };
     },
 
+
+    watch: {
+        'searchtext': function searchtext(value) {
+            var _this = this;
+
+            var formData = new FormData();
+            formData.append('searchtext', value);
+            axios.post('/find_user', formData).then(function (res) {
+                _this.searchResult = res.data.users;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    },
 
     methods: {
         addMusic: function addMusic(music_id) {

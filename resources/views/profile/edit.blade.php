@@ -80,9 +80,9 @@
                     <li><a href="/profile" title="Go to Profile Page"><i class="fa fa-home"></i> Home</a></li>
                     <li><a href="/user_events"><i class="fa fa-pencil-square"></i> Events</a></li>
                     <li><a href="#"><i class="fa fa-envelope"></i> Messages</a></li>
-                    <li><a href="#"><i class="fa fa-picture-o"></i> Photo</a></li>
+                    {{--<li><a href="#"><i class="fa fa-picture-o"></i> Photo</a></li>--}}
                     <li><a href="#"><i class="fa fa-map"></i> Inside Afrika</a></li>
-                    <li><a href="#"><i class="fa fa-music"></i> Album</a></li>
+                    {{--<li><a href="#"><i class="fa fa-music"></i> Album</a></li>--}}
                     <li><a href="#"><i class="fa fa-shopping-bag"></i> Shop</a></li>
                     <li><a href="/playlist"><i class="fa fa-music"></i> Music</a></li>
                     <li><a href="#"><i class="fa fa-video-camera"></i> Videos</a></li>
@@ -91,7 +91,9 @@
             <div class="col-sm-10 playlist-container">
                 <h5 class="text-strong">Edit profile</h5>
                 <hr/>
-                <form class="form-horizontal">
+                <form class="form-horizontal" action="/profile/{{$user->id}}" method="post">
+                    {{csrf_field()}}
+                    {{method_field('PUT')}}
                     <div class="form-group">
                         <label class="control-label col-xs-3">Status</label>
                         <div class="col-xs-9">

@@ -3,6 +3,11 @@
 @section('styling')
     <link href="{{mix('/css/profile.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{mix('/css/playlist.css')}}" rel="stylesheet" type="text/css"/>
+    <style>
+        .profile-setting{
+            display: none;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -24,8 +29,13 @@
                         <ul class="nav navbar-nav">
                             <li>
                                 <form class="form search-form">
-                                    <input type="text" v-model="search" placeholder="Find friends">
+                                    <input type="text" v-model="searchtext" placeholder="Find friends">
                                 </form>
+                                <div class="search-result" v-if="searchResult.length > 0">
+                                    <ul v-for="user in searchResult">
+                                        <li><a :href="`/profile/`+user.username" class="user-search-img" :style="`background-image : url(/storage/avatar/`+user.image+`)`"></a> <span class="user-search-name">@{{user.firstname}}</span></li>
+                                    </ul>
+                                </div>
                             </li>
                             <li><a href="#"><i class="fa fa-bell"></i> </a></li>
                         </ul>
@@ -37,16 +47,16 @@
                             @else
                                 <li>
                                     <a href="#" class="profile-pik-container dropdown">
-                                    <span class="default-bg profile-pik" alt="avatar" style="background-image: url(/storage/avatar/{{\Auth::user()->image}}">
+                                    <span class="default-bg profile-pik" onclick="toggleLogout()"  alt="avatar" style="background-image: url(/storage/avatar/{{\Auth::user()->image}}">
                                     <i class="fa fa-caret-down profile-caret"></i>
-                                    <div v-if="logout" class="profile-setting">
+                                    <div class="profile-setting">
                                         <form action="/logout" method="post" class="logout-form">
-                                            <input type="hidden" name="_token" :value="csrf">
+                                            {{csrf_field()}}
                                             <input type="submit" class="btn btn-block btn-default" value="logout">
                                         </form>
 
                                         <form action="/user" method="post" class="logout-form">
-                                            <input type="hidden" name="_token" :value="csrf">
+                                            {{csrf_field()}}
                                             <input type="hidden" name="_method" value="delete">
                                             <input type="submit" class="btn btn-block btn-default" value="Delete Profile">
                                         </form>
@@ -69,9 +79,9 @@
                     <li><a href="/profile" title="Go to Profile Page"><i class="fa fa-home"></i> Home</a></li>
                     <li><a href="/user_events"><i class="fa fa-pencil-square"></i> Events</a></li>
                     <li><a href="#"><i class="fa fa-envelope"></i> Messages</a></li>
-                    <li><a href="#"><i class="fa fa-picture-o"></i> Photo</a></li>
+                    {{--<li><a href="#"><i class="fa fa-picture-o"></i> Photo</a></li>--}}
                     <li><a href="#"><i class="fa fa-map"></i> Inside Afrika</a></li>
-                    <li><a href="#"><i class="fa fa-music"></i> Album</a></li>
+                    {{--<li><a href="#"><i class="fa fa-music"></i> Album</a></li>--}}
                     <li><a href="#"><i class="fa fa-shopping-bag"></i> Shop</a></li>
                     <li><a href="/playlist"><i class="fa fa-music"></i> Music</a></li>
                     <li><a href="#"><i class="fa fa-video-camera"></i> Videos</a></li>
@@ -104,7 +114,11 @@
                                         <div class="music-item__description">
                                             <span class="music-item__title">{{$item->music->title}}</span><br/>
                                             <span class="music-item__artist">{{($item->music->artist == NULL) ? $item->music->album->artist : $item->music->artist}}</span>
+                                        </div>
+                                        <div class="music-extra">
                                             <span class="music-item__length">00:00</span>
+                                            <a href="#"><i class="fa fa-remove"></i></a>
+                                            <a href="/playlist/{{$item->music->id}}"><i class="fa fa-download"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -120,7 +134,7 @@
 
 @section('scripts')
     <script src="/js/player.js"></script>
-    <script>
+    <script type="text/javascript">
         $(function(){
             var play = new player({
                 audio : 'audio',
@@ -140,6 +154,11 @@
                 play.setAndPlay(args);
             });
         });
+
+
+        function toggleLogout(){
+            $('.profile-setting').toggle();
+        }
 
     </script>
 @endsection

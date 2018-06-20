@@ -216,6 +216,37 @@
   font-weight: bold;
 }
 
+.search-result{
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  top: 40px;
+  border-radius: 6px;
+  z-index: 10;
+  opacity: 1;
+  max-height: 336px;
+  overflow-y: scroll;
+
+  ul{
+    padding: 0px;
+    list-style: none;
+    li{
+      .user-search-img{
+        .default-bg;
+        display: inline-block;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        margin: 4px;
+      }
+
+      .user-search-name{
+        position: relative;
+        top: -14px;
+      }
+    }
+  }
+}
 
 .default-bg{
   background-position: center;
@@ -336,6 +367,7 @@
 .loader{
   height: 80px;
   position: absolute;
+  z-index: 1000;
   top: 0;
   bottom: 0;
   left: 0;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Afrikaplus;
 
+use App\Afrika\Music;
 use App\Afrika\UserPlaylist;
 use App\User;
 use Illuminate\Http\Request;
@@ -75,7 +76,11 @@ class PlaylistController extends Controller
      */
     public function show($id)
     {
-        //
+        $music = Music::findOrFail($id);
+        $headers = [
+            'Content-Type' => 'application/mp3',
+        ];
+        return response()->download(public_path("storage/music/".$music->music_path));
     }
 
     /**

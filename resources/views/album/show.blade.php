@@ -38,7 +38,7 @@
                         <td>{{$item->album->title}}</td>
                         <td>{{($item->artist == NULL) ? $item->album->artist : $item->artist}}</td>
                         <td class="music-item__length">00:00</td>
-                        <td><i class="fa fa-plus"></i> </td>
+                        <td><i  v-on:click="addMusic({{$item->id}})" class="fa fa-plus"></i> </td>
                     </tr>
                 @endforeach
                 </tbody>

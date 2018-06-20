@@ -9,6 +9,24 @@
 .playlist li:hover {
   background-color: #e9edf1;
 }
+.playlist li.active {
+  background-color: #e9edf1;
+}
+.music-extra {
+  display: inline-block;
+  width: 100px;
+  float: right;
+  padding-top: 14px;
+}
+.music-extra .fa-download,
+.music-extra .fa-remove {
+  font-size: 16px !important;
+  top: 0px !important;
+  left: 10px;
+}
+.music-extra .fa-download {
+  left: 20px;
+}
 .playlist-container {
   background-color: white;
   padding: 20px;

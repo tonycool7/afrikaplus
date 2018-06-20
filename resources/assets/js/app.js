@@ -62,7 +62,21 @@ var profile = new Vue({
     el: '#app',
     data(){
         return {
+            searchtext : '',
+            searchResult : [],
             logout : false
+        }
+    },
+
+    watch : {
+        'searchtext' : function (value) {
+            let formData = new FormData();
+            formData.append('searchtext',value);
+            axios.post('/find_user', formData).then((res) => {
+                this.searchResult = res.data.users;
+            }).catch(function (error) {
+                console.log(error);
+            });
         }
     },
 
@@ -90,8 +104,7 @@ var profile = new Vue({
                     height: "0px"
                 }, 500);
             }
-        },
-
+        }
     },
     components : {Profile}
 });

@@ -146,7 +146,20 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = \App\User::findOrFail($id);
+
+        $user->update($request->all());
+
+        return redirect('/profile/'.$user->username);
+
+    }
+
+    public function findUser(Request $request){
+        $result = User::where('firstname', 'like', '%' . $request->searchtext. '%')->get();
+
+        return response()->json([
+            'users' => $result
+        ]);
     }
 
     /**

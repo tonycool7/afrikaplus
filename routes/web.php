@@ -106,6 +106,9 @@ Route::post('/music_search', 'Afrikaplus\\MusicController@searchMusic');
 
 Route::post('/avatar', 'Afrikaplus\\ProfileController@uploadAvatar');
 
+Route::post('/find_user', 'Afrikaplus\\ProfileController@findUser');
+
+
 Route::delete('/user', 'HomeController@deleteUser');
 
 Route::resource('/album', 'Afrikaplus\\AlbumController');

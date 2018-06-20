@@ -18,8 +18,13 @@
                         <ul class="nav navbar-nav">
                             <li>
                                 <form class="form search-form">
-                                    <input type="text" @change="searchFriends($event)" placeholder="Find friends">
+                                    <input type="text" v-model="searchtext" placeholder="Find friends">
                                 </form>
+                                <div class="search-result" v-if="searchResult.length > 0">
+                                    <ul v-for="user in searchResult">
+                                        <li><a :href="'/profile/'+user.username+''" class="user-search-img" :style="{ 'background-image' : 'url(/storage/avatar/'+user.image+')'}"></a> <span class="user-search-name">{{user.firstname}}</span></li>
+                                    </ul>
+                                </div>
                             </li>
                             <li><a href="#"><i class="fa fa-bell"></i> </a></li>
                         </ul>
@@ -61,9 +66,9 @@
                         <li><a href="/profile" title="Go to Profile Page"><i class="fa fa-home"></i> Home</a></li>
                         <li><a href="/user_events"><i class="fa fa-pencil-square"></i> Events</a></li>
                         <li><a href="#"><i class="fa fa-envelope"></i> Messages</a></li>
-                        <li><a href="#"><i class="fa fa-picture-o"></i> Photo</a></li>
+                        <!--<li><a href="#"><i class="fa fa-picture-o"></i> Photo</a></li>-->
                         <li><a href="#"><i class="fa fa-map"></i> Inside Afrika</a></li>
-                        <li><a href="#"><i class="fa fa-music"></i> Album</a></li>
+                        <!--<li><a href="#"><i class="fa fa-music"></i> Album</a></li>-->
                         <li><a href="#"><i class="fa fa-shopping-bag"></i> Shop</a></li>
                         <li><a href="/playlist"><i class="fa fa-music"></i> Music</a></li>
                         <li><a href="#"><i class="fa fa-video-camera"></i> Videos</a></li>
@@ -230,6 +235,7 @@
     export default {
         data(){
             return ({
+                searchResult : [],
                 event : this.user.event,
                 non_user : (this.user.authUser == null) ? true : false,
                 authorized : !this.user.authorized,
@@ -237,6 +243,7 @@
                 user_id: this.user.userDetails.id,
                 authUser: this.user.authUser,
                 text: "",
+                searchtext : "",
                 comment : "",
                 logout : false,
                 comments: [],
@@ -252,6 +259,18 @@
             })
         },
         props : ['csrf', 'user'],
+        watch : {
+            'searchtext' : function (value) {
+                let formData = new FormData();
+                formData.append('searchtext',value);
+                formData.append('_token', this.csrf);
+                axios.post('/find_user', formData).then((res) => {
+                    this.searchResult = res.data.users;
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+        },
         mounted() {
             console.log('Component mounted.')
         },

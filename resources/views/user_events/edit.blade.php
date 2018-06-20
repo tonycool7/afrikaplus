@@ -80,9 +80,9 @@
                     <li><a href="/profile" title="Go to Profile Page"><i class="fa fa-home"></i> Home</a></li>
                     <li><a href="/user_events"><i class="fa fa-pencil-square"></i> Events</a></li>
                     <li><a href="#"><i class="fa fa-envelope"></i> Messages</a></li>
-                    <li><a href="#"><i class="fa fa-picture-o"></i> Photo</a></li>
+                    {{--<li><a href="#"><i class="fa fa-picture-o"></i> Photo</a></li>--}}
                     <li><a href="#"><i class="fa fa-map"></i> Inside Afrika</a></li>
-                    <li><a href="#"><i class="fa fa-music"></i> Album</a></li>
+                    {{--<li><a href="#"><i class="fa fa-music"></i> Album</a></li>--}}
                     <li><a href="#"><i class="fa fa-shopping-bag"></i> Shop</a></li>
                     <li><a href="/playlist"><i class="fa fa-music"></i> Music</a></li>
                     <li><a href="#"><i class="fa fa-video-camera"></i> Videos</a></li>

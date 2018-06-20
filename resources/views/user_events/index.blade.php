@@ -35,8 +35,13 @@
                         <ul class="nav navbar-nav">
                             <li>
                                 <form class="form search-form">
-                                    <input type="text" placeholder="Find friends">
+                                    <input type="text" v-model="searchtext" placeholder="Find friends">
                                 </form>
+                                <div class="search-result" v-if="searchResult.length > 0">
+                                    <ul v-for="user in searchResult">
+                                        <li><a :href="`/profile/`+user.username" class="user-search-img" :style="`background-image : url(/storage/avatar/`+user.image+`)`"></a> <span class="user-search-name">@{{user.firstname}}</span></li>
+                                    </ul>
+                                </div>
                             </li>
                             <li><a href="#"><i class="fa fa-bell"></i> </a></li>
                         </ul>
@@ -80,9 +85,9 @@
                     <li><a href="/profile" title="Go to Profile Page"><i class="fa fa-home"></i> Home</a></li>
                     <li><a href="/user_events"><i class="fa fa-pencil-square"></i> Events</a></li>
                     <li><a href="#"><i class="fa fa-envelope"></i> Messages</a></li>
-                    <li><a href="#"><i class="fa fa-picture-o"></i> Photo</a></li>
+                    {{--<li><a href="#"><i class="fa fa-picture-o"></i> Photo</a></li>--}}
                     <li><a href="#"><i class="fa fa-map"></i> Inside Afrika</a></li>
-                    <li><a href="#"><i class="fa fa-music"></i> Album</a></li>
+                    {{--<li><a href="#"><i class="fa fa-music"></i> Album</a></li>--}}
                     <li><a href="#"><i class="fa fa-shopping-bag"></i> Shop</a></li>
                     <li><a href="/playlist"><i class="fa fa-music"></i> Music</a></li>
                     <li><a href="#"><i class="fa fa-video-camera"></i> Videos</a></li>
